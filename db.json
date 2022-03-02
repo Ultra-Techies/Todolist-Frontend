@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "username": "John Doe"
+    "email":"john@kyosk.app"
+    "pwd": "12345678"
+  },
+  {
+    "id": 2,
+    "username": "Mary Jane"
+    "email":"Mary@kyosk.app"
+    "pwd": "MaryJane"
+  },
+  {
+    "id": 3,
+    "username": "Little Lamb"
+    "email":"lamb@kyosk.app"
+    "pwd": "happy lamb"
+  }
+]
