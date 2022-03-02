@@ -1,94 +1,20 @@
-{
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "SignupUsers": [
-    {
-      "id": 1,
-      "username": "John Doe",
-      "email": "john@kyosk.app",
-      "pwd": "12345678"
-    },
-    {
-      "Username": "Mary Jane",
-      "Email": "maryjane@gmail.com",
-      "Password": "maryjane",
-      "id": 2
-    },
-    {
-      "Username": "Little Lamb",
-      "Email": "littlelamb@gmail.com",
-      "Password": "littlelamb",
-      "id": 3
-    },
-    {
-      "Username": "Mary Jane",
-      "Email": "maryjane@gmail.com",
-      "Password": "maryjane",
-      "id": 4
-    },
-    {
-      "Username": "jay",
-      "Email": "jay@kyosk",
-      "Password": "jaykyosk",
-      "ConfirmPassword": "jaykyosk",
-      "id": 5
-    },
-    {
-      "Username": "jay",
-      "Email": "jay@kyosk",
-      "Password": "jaykyosk",
-      "ConfirmPassword": "jaykyosk",
-      "id": 6
-    },
-    {
-      "Username": "Jessie Jay",
-      "Email": "jessiejay@gmail.com",
-      "Password": "jessiejay",
-      "ConfirmPassword": "jessiejay",
-      "id": 7
-    },
-    {
-      "Username": "Jessie Jay",
-      "Email": "jessiejay@gmail.com",
-      "Password": "jessiejay",
-      "ConfirmPassword": "jessiejay",
-      "id": 8
-    },
-    {
-      "Username": "John Doe",
-      "Email": "johndoe@gmail.com",
-      "Password": "john",
-      "ConfirmPassword": "john",
-      "id": 9
-    },
-    {
-      "Username": "John Doe",
-      "Email": "johndoe@gmail.com",
-      "Password": "john",
-      "ConfirmPassword": "john",
-      "id": 10
-    },
-    {
-      "Username": "Jeanyego",
-      "Email": "jeanyego.jy@gmail.com",
-      "Password": "jeanyego",
-      "ConfirmPassword": "jeanyego",
-      "id": 11
-    },
-    {
-      "Username": "Jeanyego",
-      "Email": "jeanyego.jy@gmail.com",
-      "Password": "jeanyego",
-      "ConfirmPassword": "jeanyego",
-      "id": 12
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+[
+  {
+    "id": 1,
+    "username": "John Doe"
+    "email":"john@kyosk.app"
+    "pwd": "12345678"
+  },
+  {
+    "id": 2,
+    "username": "Mary Jane"
+    "email":"Mary@kyosk.app"
+    "pwd": "MaryJane"
+  },
+  {
+    "id": 3,
+    "username": "Little Lamb"
+    "email":"lamb@kyosk.app"
+    "pwd": "happy lamb"
   }
-}
+]
