@@ -9,19 +9,32 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  isSubmitted: boolean = false;
 
   constructor() {
     this.loginForm = new FormGroup({
-      email: new FormControl("jean@kyosk.app"),
-      password: new FormControl("*******")
+      email: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+      ])
     });
   }
 
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
   login() {
-    console.log(this.loginForm.value);
+    this.isSubmitted = true;
+    if(this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    }
   }
-
-  ngOnInit(): void {
-  }
-
 }

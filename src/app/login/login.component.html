@@ -17,17 +17,23 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group">
         <label for="email">Enter your email address:</label>
-        <input type="email" class="form-control" id="email"
+        <input type="email" class="form-control" id="email" placeholder="jean@kyosk.app"
                required formControlName="email">
       </div>
-
+      <div  *ngIf="email.errors?.['required'] && (email.touched || isSubmitted)" class="alert alert-danger">
+        Email address is required.
+      </div>
 
 
       <div class="form-group">
         <label for="password">Enter your password:</label>
-        <input type="password" class="form-control" id="password"
+        <input type="password" class="form-control" id="password" placeholder="********"
                required formControlName="password">
       </div>
+      <div *ngIf="password.errors?.['required'] && (password.touched || isSubmitted)" class="alert alert-danger">
+        Password is required.
+      </div>
+
       <br />
       <p class="text-end">Forgot Password?</p>
       <br />
