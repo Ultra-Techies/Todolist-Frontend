@@ -11,21 +11,25 @@
                     <div class="form-group">
                         <label for="username">Enter Your Username:</label>
                         <input formControlName="Username" type="text" class="form-control" id="username" placeholder="John Doe" required>
-                      </div>
+                        <span class="text-danger" *ngIf="signupForm.controls['Username'].dirty && signupForm.hasError('required', 'Username')">Username is required</span>
+                   </div>
                     <div class="form-group">
                       <label for="emailaddress"> Enter Your Email address:</label>
                       <input formControlName="Email" type="email" class="form-control" id="emailaddress" placeholder="jean@kyosk.app">
+                      <span class="text-danger" *ngIf="signupForm.controls['Email'].dirty && signupForm.hasError('email', 'Email')">Email is required</span>
                     </div>
                     <div class="form-group">
                       <label for="pwd">Enter Password:</label>
                       <input formControlName="Password" type="password" class="form-control" id="pwd" placeholder="********">
+                      <span class="text-danger" *ngIf="signupForm.controls['Password'].dirty && signupForm.hasError('required', 'Password')">Password is required</span>
                     </div>
-                    <div class="form-group">
-                        <label for="confpwd">Confirm Password:</label>
-                        <input type="password" class="form-control" id="confpwd" placeholder="********">
-                      </div>
+                    <div class="form-group">                       
+                         <label for="confpwd">Confirm Password:</label>
+                        <input formControlName="ConfirmPassword" type="password" class="form-control" id="ConfirmPassword" placeholder="********">
+                        <span class="text-danger" *ngIf="signupForm.controls['ConfirmPassword'].dirty && signupForm.hasError('required', 'ConfirmPassword')">Confirm Password is required</span>  
+                    </div>
                       <br>
-                    <button type="submit" class="btn">SignUp</button>
+                    <button type="submit" class="btn" (click)="signUp()" [disabled]="signupForm.invalid">SignUp</button>
                     <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/todo">Login</a></p>
 
                   </form>
