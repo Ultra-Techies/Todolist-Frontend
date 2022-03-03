@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../_services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isSubmitted: boolean = false;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
@@ -34,7 +35,15 @@ export class LoginComponent {
   login() {
     this.isSubmitted = true;
     if(this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      this.authService.login().subscribe(data => {
+        data.forEach(cred => {
+          if (cred.email == this.email.value && cred.password == this.password.value) {
+            console.log("Login successful");
+          } else {
+            console.log("Login failed");
+          }
+        })
+      });
     }
   }
 }
