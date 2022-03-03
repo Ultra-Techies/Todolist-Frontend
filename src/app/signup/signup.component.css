@@ -4,6 +4,10 @@
 }
 .container{
     margin-top: 100px;
+    margin-right: 50px;
+}
+.col-md-8{
+    margin-left: 80px;
 }
 .btn{
     width:100%;
@@ -13,6 +17,8 @@
 .col-md-4{
     background-color:#0CA789; 
     text-align: center;
+    margin-left:-50px ;
+    border-radius: 5px;
 }
 img{
     width: 150px; 
@@ -20,10 +26,10 @@ img{
 }
 .ultra{
     color: #ffffff; 
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .goals{
     text-align: center;
     color:#ffffff;
-    margin-top: 50px;
+    margin-top: 30px;
 }
