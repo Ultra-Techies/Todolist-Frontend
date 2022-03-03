@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -16,10 +16,9 @@ public signupForm !:FormGroup;
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      Username:['', Validators.required], 
-      Email:['', Validators.email],
-      Password:['', Validators.required],
-      ConfirmPassword:['', Validators.required]
+      Username:[''], 
+      Email:[''],
+      Password:[''],
       // confpwd:['']
     })
   }
@@ -29,8 +28,8 @@ public signupForm !:FormGroup;
       {
         alert("SignUp SuccessFull");
         this.signupForm.reset();
-        this.router.navigate(['profile']);
-      }, (err: any)=>{
+        this.router.navigate(['login']);
+      }, err=>{
         alert("Something went wrong")
       } )
  }

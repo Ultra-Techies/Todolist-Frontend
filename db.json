@@ -1,20 +1,38 @@
-[
-  {
-    "id": 1,
-    "username": "John Doe"
-    "email":"john@kyosk.app"
-    "pwd": "12345678"
-  },
-  {
-    "id": 2,
-    "username": "Mary Jane"
-    "email":"Mary@kyosk.app"
-    "pwd": "MaryJane"
-  },
-  {
-    "id": 3,
-    "username": "Little Lamb"
-    "email":"lamb@kyosk.app"
-    "pwd": "happy lamb"
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "SignupUsers": [
+    {
+      "id": 1,
+      "username": "John Doe",
+      "email": "john@kyosk.app",
+      "pwd": "12345678"
+    },
+    {
+      "Username": "Mary Jane",
+      "Email": "maryjane@gmail.com",
+      "Password": "maryjane",
+      "id": 2
+    },
+    {
+      "Username": "Little Lamb",
+      "Email": "littlelamb@gmail.com",
+      "Password": "littlelamb",
+      "id": 3
+    },
+    {
+      "Username": "Mary Jane",
+      "Email": "maryjane@gmail.com",
+      "Password": "maryjane",
+      "id": 4
+    }
+  ],
+  "profile": {
+    "name": "typicode"
   }
-]
+}

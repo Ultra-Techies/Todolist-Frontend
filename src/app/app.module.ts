@@ -1,28 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
-    LoginComponent,
-    ProfileComponent,
-    SidebarComponent
+    SignupComponent
   ],
   imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    HttpClientModule
+   BrowserModule,
+   ReactiveFormsModule,
+   AppRoutingModule,
+   HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

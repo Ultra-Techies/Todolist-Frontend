@@ -1,21 +1,9 @@
 .card{
     border: none;
     margin: 50px;
-    /* margin-top: 200px; */
 }
 .container{
-    /* margin-top: 50px; */
-    /* margin-right: 50px; */
-    /* margin-left: 60px; */
-    /* margin-left:30px ; */
-    margin-top: 150px;
-    /* }
-    .container{
-        margin-top: 100px;
-        margin-right: 50px;
-    }
-    .col-md-8{
-        margin-left: 80px; */
+    margin-top: 100px;
 }
 .btn{
     width:100%;
@@ -25,9 +13,6 @@
 .col-md-4{
     background-color:#0CA789; 
     text-align: center;
-    /* margin-left:-50px ; */
-    border-radius: 5px;
-    /* margin-top: 50px; */
 }
 img{
     width: 150px; 
@@ -35,10 +20,10 @@ img{
 }
 .ultra{
     color: #ffffff; 
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .goals{
     text-align: center;
     color:#ffffff;
-    margin-top: 30px;
+    margin-top: 50px;
 }
