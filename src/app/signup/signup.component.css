@@ -1,13 +1,18 @@
 .card{
     border: none;
     margin: 50px;
+    /* margin-top: 200px; */
 }
 .container{
-    margin-top: 100px;
-    margin-right: 50px;
+    /* margin-top: 50px; */
+    /* margin-right: 50px; */
+    /* margin-left: 60px; */
+    /* margin-left:30px ; */
+    margin-top: 150px;
 }
 .col-md-8{
-    margin-left: 80px;
+    
+    /* margin-left: 10px; */
 }
 .btn{
     width:100%;
@@ -17,8 +22,10 @@
 .col-md-4{
     background-color:#0CA789; 
     text-align: center;
-    margin-left:-50px ;
+    /* margin-left:-50px ; */
     border-radius: 5px;
+    /* margin-top: 50px; */
+
 }
 img{
     width: 150px; 
