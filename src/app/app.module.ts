@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -20,7 +21,6 @@ import { LoginComponent } from './login/login.component';
    ReactiveFormsModule,
    AppRoutingModule,
    HttpClientModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
