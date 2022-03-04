@@ -10,7 +10,9 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   isSubmitted: boolean = false;
-
+  imageSrc: string = 'assets/images/logo.png';
+  imageAlt: string = 'logo';
+  
   constructor() {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
