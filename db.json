@@ -72,6 +72,20 @@
       "Password": "john",
       "ConfirmPassword": "john",
       "id": 10
+    },
+    {
+      "Username": "Jeanyego",
+      "Email": "jeanyego.jy@gmail.com",
+      "Password": "jeanyego",
+      "ConfirmPassword": "jeanyego",
+      "id": 11
+    },
+    {
+      "Username": "Jeanyego",
+      "Email": "jeanyego.jy@gmail.com",
+      "Password": "jeanyego",
+      "ConfirmPassword": "jeanyego",
+      "id": 12
     }
   ],
   "profile": {

@@ -29,8 +29,8 @@ public signupForm !:FormGroup;
       {
         alert("SignUp SuccessFull");
         this.signupForm.reset();
-        this.router.navigate(['login']);
-      }, err=>{
+        this.router.navigate(['profile']);
+      }, (err: any)=>{
         alert("Something went wrong")
       } )
  }

@@ -6,11 +6,13 @@ import { SignupComponent } from './signup/signup.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent
+    SignupComponent,
+    ProfileComponent
   ],
   imports: [
    BrowserModule,
