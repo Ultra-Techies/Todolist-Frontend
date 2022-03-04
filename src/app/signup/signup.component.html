@@ -23,14 +23,14 @@
                       <input formControlName="Password" type="password" class="form-control" id="pwd" placeholder="********">
                       <span class="text-danger" *ngIf="signupForm.controls['Password'].dirty && signupForm.hasError('required', 'Password')">Password is required</span>
                     </div>
-                    <div class="form-group">                       
+                    <div class="form-group">
                          <label for="confpwd">Confirm Password:</label>
                         <input formControlName="ConfirmPassword" type="password" class="form-control" id="ConfirmPassword" placeholder="********">
-                        <span class="text-danger" *ngIf="signupForm.controls['ConfirmPassword'].dirty && signupForm.hasError('required', 'ConfirmPassword')">Confirm Password is required</span>  
+                        <span class="text-danger" *ngIf="signupForm.controls['ConfirmPassword'].dirty && signupForm.hasError('required', 'ConfirmPassword')">Confirm Password is required</span>
                     </div>
                       <br>
                     <button type="submit" class="btn" (click)="signUp()" [disabled]="signupForm.invalid">SignUp</button>
-                    <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/todo">Login</a></p>
+                    <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/login">Login</a></p>
 
                   </form>
                   </form>
