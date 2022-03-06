@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AddtaskComponent } from './addtask/addtask.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     SignupComponent,
     ProfileComponent,
     NavbarComponent,
+    AddtaskComponent,
     
   ],
   imports: [
