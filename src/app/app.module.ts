@@ -7,18 +7,21 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
-    ProfileComponent
+    ProfileComponent,
+    NavbarComponent,
+    
   ],
   imports: [
    BrowserModule,
    ReactiveFormsModule,
    AppRoutingModule,
-   HttpClientModule
+   HttpClientModule,
 
   ],
   providers: [],
