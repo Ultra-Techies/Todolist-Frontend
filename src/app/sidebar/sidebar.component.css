@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  border: grey solid 5px;
+}
+
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#sidebar ul.components {
+  padding: 20px 0px 0px;
+  font-size: 25px;
+}
+
+#sidebar ul li a {
+  padding: 20px;
+  text-align: center;
+  justify-content: left;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: #0CA789;
+  /*background: #000;*/
+}
