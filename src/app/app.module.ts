@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 
@@ -14,6 +17,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AppComponent,
     SignupComponent,
     LoginComponent,
+    ProfileComponent,
+    NavbarComponent,
     SidebarComponent
   ],
   imports: [
