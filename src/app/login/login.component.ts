@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,8 @@ export class LoginComponent {
   isSubmitted: boolean = false;
   imageSrc: string = 'assets/images/logo.png';
   imageAlt: string = 'logo';
-  
-  constructor() {
+
+  constructor(private router: Router) {
     this.loginForm = new FormGroup({
       email: new FormControl("", [
         Validators.required,
@@ -37,6 +38,7 @@ export class LoginComponent {
     this.isSubmitted = true;
     if(this.loginForm.valid) {
       console.log(this.loginForm.value);
+      this.router.navigate(['profile']);
     }
   }
 }
