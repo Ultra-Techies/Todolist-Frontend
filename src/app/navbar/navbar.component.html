@@ -6,7 +6,7 @@
           <p>{{today | date:'fullDate'}}</p>
         </li>
         <li class="nav-iten" style="margin: 10px;">
-          <a class="nav-link" href = "#">
+          <a class="nav-link"  (click)="showToaster()">
             <i class="fa fa-bell-o" aria-hidden="true"></i>
           </a>
         </li>
@@ -15,7 +15,7 @@
         </li>  
        
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" routerLink ="/profile" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{imageSrc}}" alt="{{imageAlt}}"width="40" height="40" class="rounded-circle" >
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

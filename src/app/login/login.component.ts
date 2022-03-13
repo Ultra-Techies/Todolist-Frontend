@@ -1,44 +1,42 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  imageSrc = 'assets/images/logo.png'  
+  imageAlt = 'Logo'
+public loginForm !:FormGroup;
+  constructor( private formBuilder : FormBuilder,private http:HttpClient, private router :Router) { }
 
-  loginForm: FormGroup;
-  isSubmitted: boolean = false;
-  imageSrc: string = 'assets/images/logo.png';
-  imageAlt: string = 'logo';
-
-  constructor(private router: Router) {
-    this.loginForm = new FormGroup({
-      email: new FormControl("", [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl("", [
-        Validators.required,
-      ])
-    });
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      Email:['', Validators.required],
+      Password:['', Validators.required ],
+    })
   }
-
-  get email() {
-    return this.loginForm.get('email');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
-  }
-
-  login() {
-    this.isSubmitted = true;
-    if(this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.router.navigate(['profile']);
-    }
-  }
+  login(){
+    this.http.get<any>("http://localhost:3000/SignupUsers")
+    .subscribe(res=>
+      {
+     const user= res.find((a:any)=>{
+       return a.Email ===this.loginForm.value.Email && a.Password ===this.loginForm.value.Password
+     });
+     if(user){
+       alert("Login Success!!");
+       this.loginForm.reset()
+       this.router.navigate(['todo'])
+     }else{
+       alert("User not found!!")
+     }
+      
+      },err=>{
+        alert("Something went wrong!!")
+      })
+ }
 }
