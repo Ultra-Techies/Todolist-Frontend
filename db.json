@@ -1,17 +1,71 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "task": "Read Taking Risks",
+      "duedate": "2022-04-21T23:30",
+      "id": 4
+    }
+  ],
+  "done": [
+    {
+      "task": "Watch a Movie",
+      "duedate": "2022-03-07T17:28",
+      "id": 2
+    },
+    {
+      "task": "Populate the database with data",
+      "duedate": "2022-03-10T20:39",
+      "id": 3
+    },
+    {
+      "task": "Read Taking Risks",
+      "duedate": "2022-04-21T23:30",
+      "id": 4
+    }
+  ],
+  "created": [
+    {
+      "task": "Populate the database with data",
+      "duedate": "2022-03-10T20:39",
+      "id": 3
+    },
+    {
+      "task": "Study Vanilla Javascript",
+      "duedate": "2022-03-09T19:20",
+      "id": 6
+    },
+    {
+      "task": "Have a meeting",
+      "duedate": "2022-03-19T13:52",
+      "id": 10
+    },
+    {
+      "task": "Create a JSON server",
+      "duedate": "2022-03-11T18:12",
+      "id": 11
+    },
+    {
+      "task": "Go through Angular Material",
+      "duedate": "2022-03-23T17:50",
+      "id": 12
+    },
+    {
+      "task": "Finish the ES6 course",
+      "duedate": "2022-03-21T14:54",
+      "id": 13
+    },
+    {
+      "task": "Push my code to github",
+      "duedate": "2022-03-23T16:56",
+      "id": 14
     }
   ],
   "SignupUsers": [
     {
-      "id": 1,
-      "username": "John Doe",
-      "email": "john@kyosk.app",
-      "pwd": "12345678"
+      "Username": "John Doe",
+      "Email": "john@kyosk.app",
+      "Password": "12345678",
+      "id": 1
     },
     {
       "Username": "Mary Jane",
@@ -26,66 +80,74 @@
       "id": 3
     },
     {
-      "Username": "Mary Jane",
-      "Email": "maryjane@gmail.com",
-      "Password": "maryjane",
+      "Username": "jay",
+      "Email": "jay@kyosk",
+      "Password": "jaykyosk",
+      "ConfirmPassword": "jaykyosk",
       "id": 4
     },
     {
-      "Username": "jay",
-      "Email": "jay@kyosk",
-      "Password": "jaykyosk",
-      "ConfirmPassword": "jaykyosk",
+      "Username": "Shawn Mendes",
+      "Email": "shawnmendes@gmail.com",
+      "Password": "wonder",
+      "ConfirmPassword": "wonder",
       "id": 5
     },
     {
-      "Username": "jay",
-      "Email": "jay@kyosk",
-      "Password": "jaykyosk",
-      "ConfirmPassword": "jaykyosk",
+      "Username": "Jessie Jay",
+      "Email": "jessiejay@gmail.com",
+      "Password": "flashlight",
+      "ConfirmPassword": "flashlight",
       "id": 6
     },
     {
-      "Username": "Jessie Jay",
-      "Email": "jessiejay@gmail.com",
-      "Password": "jessiejay",
-      "ConfirmPassword": "jessiejay",
+      "Username": "Jean Yego",
+      "Email": "jean@kyosk.app",
+      "Password": "jeanyego",
+      "ConfirmPassword": "jeanyego",
       "id": 7
     },
     {
-      "Username": "Jessie Jay",
-      "Email": "jessiejay@gmail.com",
-      "Password": "jessiejay",
-      "ConfirmPassword": "jessiejay",
+      "Username": "Shawn Mendes",
+      "Email": "shawnmendes@gmail.com",
+      "Password": "shawn ",
+      "ConfirmPassword": "shawn ",
       "id": 8
     },
     {
-      "Username": "John Doe",
-      "Email": "johndoe@gmail.com",
-      "Password": "john",
-      "ConfirmPassword": "john",
+      "Username": "Martin Oywa",
+      "Email": "martinoywa@gmail.com",
+      "Password": "martin",
+      "ConfirmPassword": "martin",
       "id": 9
     },
     {
-      "Username": "John Doe",
-      "Email": "johndoe@gmail.com",
-      "Password": "john",
-      "ConfirmPassword": "john",
+      "Username": "nneka egara",
+      "Email": "nneka@gmail.com",
+      "Password": "nneka",
+      "ConfirmPassword": "nneka",
       "id": 10
     },
     {
-      "Username": "Jeanyego",
-      "Email": "jeanyego.jy@gmail.com",
-      "Password": "jeanyego",
-      "ConfirmPassword": "jeanyego",
+      "Username": "Shirleen Yego",
+      "Email": "shirleenyego@gmail.com",
+      "Password": "shirleen",
+      "ConfirmPassword": "shirleen",
       "id": 11
     },
     {
-      "Username": "Jeanyego",
-      "Email": "jeanyego.jy@gmail.com",
-      "Password": "jeanyego",
-      "ConfirmPassword": "jeanyego",
+      "Username": "Mary Jane",
+      "Email": "maryjane@gmail.com",
+      "Password": "maryjane",
+      "ConfirmPassword": "maryjane",
       "id": 12
+    },
+    {
+      "Username": "sammyjoe",
+      "Email": "sammyjoe@gmail.com",
+      "Password": "sammyjoe",
+      "ConfirmPassword": "sammyjoe",
+      "id": 13
     }
   ],
   "profile": {

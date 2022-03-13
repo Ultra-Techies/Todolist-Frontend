@@ -9,6 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AddtaskComponent } from './addtask/addtask.component';
+import { TodoComponent } from './todo/todo.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LoginComponent } from './login/login.component';
+import { ToastrModule } from 'ngx-toastr';
+
+
+// import { filter } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -17,6 +24,9 @@ import { AddtaskComponent } from './addtask/addtask.component';
     ProfileComponent,
     NavbarComponent,
     AddtaskComponent,
+    TodoComponent,
+    LoginComponent,
+
     
   ],
   imports: [
@@ -24,7 +34,9 @@ import { AddtaskComponent } from './addtask/addtask.component';
    ReactiveFormsModule,
    AppRoutingModule,
    HttpClientModule,
-
+   DragDropModule,
+  //  BrowserAnimationsModule,
+   ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

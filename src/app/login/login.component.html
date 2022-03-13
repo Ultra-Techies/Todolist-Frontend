@@ -1,0 +1,37 @@
+<div class="container">
+    <div class=" row">
+          <div class="col-md-8">
+              <div class="card">
+                  <div style="text-align: center;">
+                      <h2>Welcome</h2>
+                      <h6>Please Login to Continue</h6>
+                  </div>
+                  <form>
+                  <form [formGroup]="loginForm" (Submit)="login()" >
+                      <div class="form-group">
+                        <label for="emailaddress"> Enter Your Email address:</label>
+                        <input formControlName="Email" type="email" class="form-control" id="emailaddress" placeholder="jean@kyosk.app">
+                        <span class="text-danger" *ngIf="loginForm.controls['Email'].dirty && loginForm.hasError('email', 'Email')">Email is required</span>
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Enter Password:</label>
+                        <input formControlName="Password" type="password" class="form-control" id="pwd" placeholder="********">
+                        <span class="text-danger" *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required', 'Password')">Password is required</span>
+                      </div>
+                        <br>
+                        <button type="submit" class="btn" (click)="login()" [disabled]="loginForm.invalid">LogIn</button>
+                        <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/signup">Sign Up</a></p>
+                    </form>
+                    </form>
+              </div>
+          </div>
+            <div class="col-md-4">
+              <!-- <img [src]="/assets/images/to-do-list-logo.png"
+              style="width: 600px;height: 400px;">> -->
+              <img src="{{imageSrc}}" alt="{{imageAlt}}">
+              <h3 class="ultra">Ultra Techie</h3>
+          <p class="goals">“Our goals can only be reached through a vehicle of a plan, in which we must fervently believe, and upon which we must vigorously act. There is no other route to success.” – Pablo Picasso</p>
+        </div>
+          
+      </div>
+      </div>

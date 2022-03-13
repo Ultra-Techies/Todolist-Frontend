@@ -7,7 +7,7 @@
                     <h6>Please Sign Up to Continue</h6>
                 </div>
                 <form>
-                <form [formGroup]="signupForm" (ngSubmit)="signUp()" >
+                <form [formGroup]="signupForm" (Submit)="signUp()" >
                     <div class="form-group">
                         <label for="username">Enter Your Username:</label>
                         <input formControlName="Username" type="text" class="form-control" id="username" placeholder="John Doe" required>
@@ -30,7 +30,7 @@
                     </div>
                       <br>
                     <button type="submit" class="btn" (click)="signUp()" [disabled]="signupForm.invalid">SignUp</button>
-                    <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/todo">Login</a></p>
+                    <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/login">Login</a></p>
 
                   </form>
                   </form>

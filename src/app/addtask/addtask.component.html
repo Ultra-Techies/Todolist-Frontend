@@ -1,31 +1,34 @@
-<div class="container mt-5 mb-5">
-    <div>
-        <app-navbar></app-navbar>
-    </div>
+<div class="container">
 <div class="row">
-    <div class="col-md-4">
+<div class="col-md-3">
 
-    </div>
-    <div class="col-md-8">
-        <div class="p-3 py-5" style="margin-top: -50px;">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <p class="text-right">Hi John,</p>
-                </div>
-            <div class="row mt-2">
-                <div class="col-md-6"><label class="labels">Title</label><input type="text" class="form-control" placeholder="Lorem Ipsum" value=""></div>
-                <div class="col-md-6"><label class="labels">Date</label><input type="date" class="form-control" value="" placeholder="06/03/2022"></div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                <label class="labels">Task Description:</label>
-                <textarea class="form-control" placeholder="Vestibulum condimentum tellus vitae purus pulvinar, aliquet commodo dui tempus. Aliquam quis ante ut nunc tempus pharetra" id="description" rows="4"></textarea>
-            </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6 text-center" style="margin-bottom: -50px;"><button class="btn btn-success task-button" type="button" style="width: 100%;">Add Task</button></div>
-            </div>
-            
-        </div>
-    </div>
+</div>
+<div class="col-md-9">
+    <button class="btn btn-danger" (click)="showReminder()">Reminders</button>
+    <form>
+        <form [formGroup]="addtaskForm" (Submit)="addTask()" >
+    <div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Enter Task:</label>
+            <input formControlName="task" type="text" class="form-control" id="task" placeholder="Create a dashboard" required>
+            <span class="text-danger" *ngIf="addtaskForm.controls['task'].dirty && addtaskForm.hasError('required', 'task')">Task is required</span>
+       </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="">Enter Due Date:</label>
+        <input formControlName="duedate" type="datetime-local" class="form-control" id="duedate" placeholder="21/03/2022 5:30PM" required>
+        <span class="text-danger" *ngIf="addtaskForm.controls['duedate'].dirty && addtaskForm.hasError('required', 'duedate')"> Due date is required</span>
+   </div>
+     </div>
+     </div>
+     <br>
+     <div class="align-right">
+     <button type="submit" class="btn btn-success btn-lg float-right" (click)="addTask()" [disabled]="addtaskForm.invalid">Add Task</button>
+     </div>
+</form>
+</form>
+</div>
 </div>
 </div>
