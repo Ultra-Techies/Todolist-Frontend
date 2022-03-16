@@ -1,53 +1,62 @@
 <div class="container">
-    <app-navbar></app-navbar>
-    <app-addtask></app-addtask>
-    <br>
-    <div class="row">
-        <div class="col-md-3">
+  <app-navbar></app-navbar>
+  <app-addtask></app-addtask>
+  <br />
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+      <div cdkDropListGroup>
+        <div class="todo-container">
+          <h3>Created</h3>
+          <div
+            cdkDropList
+            [cdkDropListData]="created"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of created" cdkDrag>
+              {{ item.title }}
+              <a class="btn">
+                <i
+                  (click)="deleteItem(item.id)"
+                  class="fa fa-trash"
+                  style="cursor: pointer"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="col-md-9">
-        <div cdkDropListGroup>
-            <div class="todo-container">
-              <h3>Created</h3>
-              <div
-                cdkDropList
-                [cdkDropListData]="created"
-                class="list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="box" *ngFor="let item of created" cdkDrag>
-                  {{item.title}}
-                  <a class="btn">
-                    <i (click)="deleteItem(item.id)" class="fa fa-trash" style="cursor: pointer;" aria-hidden="true"></i>
-                  </a> 
-                </div>
-              </div>
-            </div>
-            <div class="todo-container">
-                <h3>In Progress</h3>
-            
-                <div
-                  cdkDropList
-                  [cdkDropListData]="posts"
-                  class="list"
-                  (cdkDropListDropped)="drop($event)">
-                  <div class="box" *ngFor="let item of posts" cdkDrag>
-                    {{item.title}}
-                  </div>
-                </div>
-              </div>
-            
-            <div class="todo-container">
-              <h3>Done</h3>
-          
-              <div
-                cdkDropList
-                [cdkDropListData]="done"
-                class="list"
-                (cdkDropListDropped)="drop($event)">
-                <div class="box" *ngFor="let item of done" cdkDrag>{{item.title}}</div>
-              </div>
+        <div class="todo-container">
+          <h3>In Progress</h3>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="posts"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of posts" cdkDrag>
+              {{ item.title }}
             </div>
           </div>
+        </div>
+
+        <div class="todo-container">
+          <h3>Done</h3>
+
+          <div
+            cdkDropList
+            [cdkDropListData]="done"
+            class="list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div class="box" *ngFor="let item of done" cdkDrag>
+              {{ item.title }}
+            </div>
           </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
