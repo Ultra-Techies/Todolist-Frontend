@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-addtask',
@@ -39,18 +38,17 @@ addTask() {
 
   this.http.post('http://localhost:8080/api/task/add/'+userId, newTaskData, {headers: header})
   .subscribe(res => {
-    alert("Task added successfully");
+    this.showToastMessage("Task added successfully");
     this.addtaskForm.reset();
     window.location.reload();
   }, err => {
     console.log("Error: "+err);
-    alert("Unable to add task, try again!");
+    this.showToastMessage("Unable to add task, try again!");
   })
 }
 
-showReminder(){
-  // if(this.today= this.duedate){
-    this.toastr.success("Your task is due")
+showToastMessage(message:string = "Your task is due"){
+    this.toastr.success(message)
   }
   
   //a function that takes date/time and converts it to this format: 2022-08-18 00:44:21
