@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
   imageSrc = 'assets/images/logo.png'  
   imageAlt = 'Logo'
+  json: string | undefined;
+
 public signupForm !:FormGroup;
   constructor( private formBuilder : FormBuilder, private http: HttpClient, private router :Router) { }
 
@@ -22,16 +24,34 @@ public signupForm !:FormGroup;
       ConfirmPassword:['', Validators.required]
       // confpwd:['']
     })
+
   }
   signUp(){
-    this.http.post<any>("http://localhost:3000/SignupUsers", this.signupForm.value)
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
+
+    const postUserData = {
+      username: this.signupForm.value.Username,
+      email: this.signupForm.value.Email,
+      password: this.signupForm.value.Password,
+      name: this.signupForm.value.username
+    };
+
+    this.http.post<any>("http://localhost:8080/api/user", postUserData, {headers: header})
     .subscribe(res=>
       {
         alert("SignUp SuccessFull");
         this.signupForm.reset();
-        this.router.navigate(['profile']);
+        this.router.navigate(['login']);
       }, (err: any)=>{
-        alert("Something went wrong")
+        alert("Error: "+err.error.message);
+        this.router.navigate(['signup']);
+        if (err.error instanceof Error) {
+            console.log('Client-side error occured.');
+          } else {
+            console.log('Server-side error occured.');
+          }
       } )
  }
 

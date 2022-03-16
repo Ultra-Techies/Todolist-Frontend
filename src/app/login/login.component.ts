@@ -1,44 +1,52 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  imageSrc = 'assets/images/logo.png'  
+  imageAlt = 'Logo'
+public loginForm !:FormGroup;
+  constructor( private formBuilder : FormBuilder,private http:HttpClient, private router :Router) { }
 
-  loginForm: FormGroup;
-  isSubmitted: boolean = false;
-  imageSrc: string = 'assets/images/logo.png';
-  imageAlt: string = 'logo';
-
-  constructor(private router: Router) {
-    this.loginForm = new FormGroup({
-      email: new FormControl("", [
-        Validators.required,
-        Validators.email
-      ]),
-      password: new FormControl("", [
-        Validators.required,
-      ])
-    });
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      Email:['', Validators.required],
+      Password:['', Validators.required ],
+    })
   }
+  login(){
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
 
-  get email() {
-    return this.loginForm.get('email');
-  }
+    const loginUserData = {
+      email: this.loginForm.value.Email,
+      password: this.loginForm.value.Password
+    };
 
-  get password() {
-    return this.loginForm.get('password');
-  }
+    this.http.post<any>("http://localhost:8080/api/user/email/auth", loginUserData, {headers: header})
+    .subscribe(res=>
+      {
+     
+     if(res.email === this.loginForm.value.Email && res.id !== 0){
+       alert("Login Success!!");
+       //save user id in local storage
+        localStorage.setItem('userId', res.id);
 
-  login() {
-    this.isSubmitted = true;
-    if(this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.router.navigate(['profile']);
-    }
-  }
+        this.loginForm.reset()
+        this.router.navigate(['todo'])
+
+     }else{
+       alert("User not found!!")
+     }
+      },err=>{
+        alert("Error: "+err.error.message);
+      })
+ }
 }
