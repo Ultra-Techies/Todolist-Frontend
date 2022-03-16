@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray,transferArrayItem  } from '@angular/cdk/drag-drop';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-todo',
@@ -34,13 +34,21 @@ export class TodoComponent implements OnInit{
   }
   ngOnInit(): void {
     console.log('ngOnInit')
-    this.http.get('http://localhost:3000/created')
-    // this.http.get('http://localhost:3000/posts')
+
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
+
+    //fetch userid from local storage
+    let userId = localStorage.getItem('userId');
+
+    //call api to get all tasks
+    this.http.get('http://localhost:8080/api/task/'+userId, {headers: header})
     .subscribe(res=>{
       this.created = res
       this.created.reset
       console.log(this.created)
-      // this.posts =res
+      this.posts =res
       // console.log(this.posts)
     }
 

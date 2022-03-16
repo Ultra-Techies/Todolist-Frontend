@@ -15,7 +15,7 @@
                 class="list"
                 (cdkDropListDropped)="drop($event)">
                 <div class="box" *ngFor="let item of created" cdkDrag>
-                  {{item.task}}
+                  {{item.title}}
                   <a class="btn">
                     <i (click)="deleteUser(item.id)" class="fa fa-trash" style="cursor: pointer;" aria-hidden="true"></i>
                   </a> 

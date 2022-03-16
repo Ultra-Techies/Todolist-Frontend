@@ -37,7 +37,7 @@ public loginForm !:FormGroup;
      if(res.email === this.loginForm.value.Email && res.id !== 0){
        alert("Login Success!!");
        //save user id in local storage
-        localStorage.setItem('userId', res._id);
+        localStorage.setItem('userId', res.id);
 
         this.loginForm.reset()
         this.router.navigate(['todo'])
