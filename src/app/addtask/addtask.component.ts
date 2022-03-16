@@ -15,6 +15,7 @@ public addtaskForm !:FormGroup;
   ngOnInit(): void {
     this.addtaskForm = this.formBuilder.group({
       task:['', Validators.required],
+      description:['', Validators.required],
       duedate:['', Validators.required]
     })
     

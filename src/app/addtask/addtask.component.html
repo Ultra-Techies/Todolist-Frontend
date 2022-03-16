@@ -17,6 +17,13 @@
 </div>
 <div class="col-md-6">
     <div class="form-group">
+        <label for="">Enter Description:</label>
+        <input formControlName="description" type="text" class="form-control" id="task" placeholder="Add login buttons to the navbar in the dashboard" required>
+        <span class="text-danger" *ngIf="addtaskForm.controls['task'].dirty && addtaskForm.hasError('required', 'task')">Description is required</span>
+   </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
         <label for="">Enter Due Date:</label>
         <input formControlName="duedate" type="datetime-local" class="form-control" id="duedate" placeholder="21/03/2022 5:30PM" required>
         <span class="text-danger" *ngIf="addtaskForm.controls['duedate'].dirty && addtaskForm.hasError('required', 'duedate')"> Due date is required</span>
