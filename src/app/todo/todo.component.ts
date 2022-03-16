@@ -7,6 +7,7 @@ import {
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Utils from '../helpers/utils';
 
 @Component({
   selector: 'app-todo',
@@ -14,7 +15,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  url = 'http://localhost:3000/created/';
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -56,7 +56,7 @@ export class TodoComponent implements OnInit {
 
     //call api to get all tasks
     this.http
-      .get('http://localhost:8080/api/task/' + userId, { headers: header })
+      .get(Utils.BASE_URL + 'task/' + userId, { headers: header })
       .subscribe((res) => {
         const createdTasks = Object.values(res);
         console.log('Tasks: ', createdTasks);
@@ -72,7 +72,7 @@ export class TodoComponent implements OnInit {
     this.toastr.success(message);
   }
   deleteItem(id: any) {
-    this.http.delete('http://localhost:8080/api/task/delete/' + id).subscribe(
+    this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
         this.showToastMessage('Task Deleted Successfully');
         this.ngOnInit();
@@ -101,11 +101,16 @@ export class TodoComponent implements OnInit {
       task.status = 'done';
     }
 
+    //always format dates to backend standard of yyyy-mm-dd hh:mm:ss
+    task.createdTime = Utils.formatDate(task.createdTime);
+    task.dueDate = Utils.formatDate(task.dueDate);
+    task.reminer = Utils.formatDate(task.reminderTime);
+
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
     this.http
-      .put(`http://localhost:8080/api/task/update/${task.id}`, task, {
+      .put(Utils.BASE_URL + `task/update/${task.id}`, task, {
         headers: header,
       })
       .subscribe((res) => {

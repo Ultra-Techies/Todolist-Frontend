@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import Utils from '../helpers/utils';
 
 @Component({
   selector: 'app-addtask',
@@ -35,13 +36,13 @@ export class AddtaskComponent implements OnInit {
     const newTaskData = {
       title: this.addtaskForm.value.task,
       description: this.addtaskForm.value.description,
-      reminder: this.formatDate(this.addtaskForm.value.duedate),
-      dueDate: this.formatDate(this.addtaskForm.value.duedate),
-      createdTime: this.formatDate(today),
+      reminder: Utils.formatDate(this.addtaskForm.value.duedate),
+      dueDate: Utils.formatDate(this.addtaskForm.value.duedate),
+      createdTime: Utils.formatDate(today),
     };
 
     this.http
-      .post('http://localhost:8080/api/task/add/' + userId, newTaskData, {
+      .post(Utils.BASE_URL + 'task/add/' + userId, newTaskData, {
         headers: header,
       })
       .subscribe(
@@ -59,18 +60,5 @@ export class AddtaskComponent implements OnInit {
 
   showToastMessage(message: string = 'null') {
     this.toastr.success(message);
-  }
-
-  //a function that takes date/time and converts it to this format: 2022-08-18 00:44:21
-  formatDate(date) {
-    let date_ = new Date(date);
-    let dd = String(date_.getDate()).padStart(2, '0');
-    let mm = String(date_.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = date_.getFullYear();
-    let hh = String(date_.getHours()).padStart(2, '0');
-    let min = String(date_.getMinutes()).padStart(2, '0');
-    let sec = String(date_.getSeconds()).padStart(2, '0');
-    let newDate = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + min + ':' + sec;
-    return newDate;
   }
 }
