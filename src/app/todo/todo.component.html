@@ -17,7 +17,7 @@
                 <div class="box" *ngFor="let item of created" cdkDrag>
                   {{item.title}}
                   <a class="btn">
-                    <i (click)="deleteUser(item.id)" class="fa fa-trash" style="cursor: pointer;" aria-hidden="true"></i>
+                    <i (click)="deleteItem(item.id)" class="fa fa-trash" style="cursor: pointer;" aria-hidden="true"></i>
                   </a> 
                 </div>
               </div>
