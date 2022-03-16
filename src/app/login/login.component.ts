@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,19 +44,26 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
-            alert('Login Success!!');
+            this.showToastMessage('Login Success!!');
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
-            //this.loginForm.reset();
-            this.router.navigate(['todo']);
+            //wait for 2 seconds
+            setTimeout(() => {
+              this.loginForm.reset();
+              this.router.navigate(['todo']);
+            }, 2000);
           } else {
-            alert('User not found!!');
+            this.showToastMessage('User not found!!');
           }
         },
         (err) => {
           alert('Error: ' + err.error.message);
         }
       );
+  }
+
+  showToastMessage(message: string = 'null') {
+    this.toastr.success(message);
   }
 }

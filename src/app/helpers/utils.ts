@@ -1,5 +1,3 @@
-import { Injectable } from '@angular/core';
-
 //formats date/time into yyyy-mm-dd hh:mm:ss format
 export default class Utils {
   static formatDate(date: any): any {
