@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
-            this.loginForm.reset();
+            //this.loginForm.reset();
             this.router.navigate(['todo']);
           } else {
             alert('User not found!!');

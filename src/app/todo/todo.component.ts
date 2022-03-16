@@ -15,12 +15,10 @@ import Utils from '../helpers/utils';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
-  url = 'http://localhost:3000/created/';
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService,
-    private utils: Utils
+    private toastr: ToastrService
   ) {}
   created: any = [''];
   posts: any = [];
@@ -103,7 +101,10 @@ export class TodoComponent implements OnInit {
       task.status = 'done';
     }
 
-    task.createdTime = this.utils.formatDate(task.createdTime);
+    //always format dates to backend standard of yyyy-mm-dd hh:mm:ss
+    task.createdTime = Utils.formatDate(task.createdTime);
+    task.dueDate = Utils.formatDate(task.dueDate);
+    task.reminer = Utils.formatDate(task.reminderTime);
 
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');

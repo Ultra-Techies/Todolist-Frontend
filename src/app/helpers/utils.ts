@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+//formats date/time into yyyy-mm-dd hh:mm:ss format
 export default class Utils {
-  formatDate(date: string) {
+  static formatDate(date: any): any {
     let date_ = new Date(date);
     let dd = String(date_.getDate()).padStart(2, '0');
     let mm = String(date_.getMonth() + 1).padStart(2, '0'); //January is 0!
