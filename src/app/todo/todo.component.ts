@@ -18,8 +18,6 @@ export class TodoComponent implements OnInit{
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      //console.log("Moved: ",event.previousContainer.data[event.previousIndex]);
-      //console.log new container
       this.updateTask(event.previousContainer.data[event.previousIndex], event.container.id);
       transferArrayItem(
         event.previousContainer.data,
