@@ -27,8 +27,6 @@ addTask() {
   header.append('Access-Control-Allow-Origin', '*');
   let userId = localStorage.getItem('userId');
 
-  //TODO: move below logic to a helper file
-  //get todays date/time and format it to 2022-08-18 00:44:21
   let today = new Date();
 
   const newTaskData = {
