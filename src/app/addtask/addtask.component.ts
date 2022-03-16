@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addtask',
@@ -20,8 +20,8 @@ export class AddtaskComponent implements OnInit {
   ngOnInit(): void {
     this.addtaskForm = this.formBuilder.group({
       task: ['', Validators.required],
-      description: ['', Validators.required],
       duedate: ['', Validators.required],
+      description: ['', Validators.required],
     });
   }
   addTask() {
@@ -34,7 +34,7 @@ export class AddtaskComponent implements OnInit {
 
     const newTaskData = {
       title: this.addtaskForm.value.task,
-      description: this.addtaskForm.value.task,
+      description: this.addtaskForm.value.description,
       reminder: this.formatDate(this.addtaskForm.value.duedate),
       dueDate: this.formatDate(this.addtaskForm.value.duedate),
       createdTime: this.formatDate(today),
@@ -47,8 +47,8 @@ export class AddtaskComponent implements OnInit {
       .subscribe(
         (res) => {
           this.showToastMessage('Task added successfully');
+          this.router.navigate(['todo']);
           this.addtaskForm.reset();
-          window.location.reload();
         },
         (err) => {
           console.log('Error: ' + err);
@@ -57,7 +57,7 @@ export class AddtaskComponent implements OnInit {
       );
   }
 
-  showToastMessage(message: string = 'Your task is due') {
+  showToastMessage(message: string = 'null') {
     this.toastr.success(message);
   }
 
