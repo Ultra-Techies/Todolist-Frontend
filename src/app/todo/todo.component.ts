@@ -7,6 +7,7 @@ import {
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Utils from '../helpers/utils';
 
 @Component({
   selector: 'app-todo',
@@ -18,7 +19,8 @@ export class TodoComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private utils: Utils
   ) {}
   created: any = [''];
   posts: any = [];
@@ -100,6 +102,8 @@ export class TodoComponent implements OnInit {
     } else if (sectionId === 'cdk-drop-list-2') {
       task.status = 'done';
     }
+
+    task.createdTime = this.utils.formatDate(task.createdTime);
 
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
