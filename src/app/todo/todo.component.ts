@@ -12,12 +12,6 @@ export class TodoComponent implements OnInit{
   constructor(private http: HttpClient, private router:Router) { }
   created :any=[''];
   posts:any=[];
-  // \\created = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  // \\created = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-  // inprogress: any={
-  //   task:"",
-  //   duedate:"",
-  // }
   done:any = [];
 
   drop(event: CdkDragDrop<string[]>) {
@@ -45,11 +39,13 @@ export class TodoComponent implements OnInit{
     //call api to get all tasks
     this.http.get('http://localhost:8080/api/task/'+userId, {headers: header})
     .subscribe(res=>{
-      this.created = res
-      this.created.reset
-      console.log(this.created)
-      this.posts =res
-      // console.log(this.posts)
+      const createdTasks = Object.values(res);
+      console.log("Tasks: ",createdTasks);
+
+      //filter tasks
+      this.created = createdTasks.filter(task=>task.status === 'created');
+      this.posts = createdTasks.filter(task=>task.status === 'progress');
+      this.done = createdTasks.filter(task=>task.status === 'done');
     }
 
     )
