@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
     //make API call
     this.http
-      .get(Utils.BASE_URL + '/user/' + userId, { headers: header })
+      .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
       .subscribe((res) => {
         this.SignupUser = res;
         console.log(this.SignupUser);
