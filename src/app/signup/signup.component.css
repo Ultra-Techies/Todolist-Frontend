@@ -9,6 +9,13 @@
     /* margin-left: 60px; */
     /* margin-left:30px ; */
     margin-top: 150px;
+    /* }
+    .container{
+        margin-top: 100px;
+        margin-right: 50px;
+    }
+    .col-md-8{
+        margin-left: 80px; */
 }
 .btn{
     width:100%;
@@ -21,7 +28,6 @@
     /* margin-left:-50px ; */
     border-radius: 5px;
     /* margin-top: 50px; */
-
 }
 img{
     width: 150px; 

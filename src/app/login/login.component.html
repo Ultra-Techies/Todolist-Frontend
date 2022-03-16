@@ -1,37 +1,57 @@
-<div class="container">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
     <div class=" row">
-          <div class="col-md-8">
-              <div class="card">
-                  <div style="text-align: center;">
-                      <h2>Welcome</h2>
-                      <h6>Please Login to Continue</h6>
-                  </div>
-                  <form>
-                  <form [formGroup]="loginForm" (Submit)="login()" >
-                      <div class="form-group">
-                        <label for="emailaddress"> Enter Your Email address:</label>
-                        <input formControlName="Email" type="email" class="form-control" id="emailaddress" placeholder="jean@kyosk.app">
-                        <span class="text-danger" *ngIf="loginForm.controls['Email'].dirty && loginForm.hasError('email', 'Email')">Email is required</span>
-                      </div>
-                      <div class="form-group">
-                        <label for="pwd">Enter Password:</label>
-                        <input formControlName="Password" type="password" class="form-control" id="pwd" placeholder="********">
-                        <span class="text-danger" *ngIf="loginForm.controls['Password'].dirty && loginForm.hasError('required', 'Password')">Password is required</span>
-                      </div>
-                        <br>
-                        <button type="submit" class="btn" (click)="login()" [disabled]="loginForm.invalid">LogIn</button>
-                        <p class="d-flex justify-content-end">Already have an account? <a routerLink ="/signup">Sign Up</a></p>
-                    </form>
-                    </form>
-              </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div style="text-align: center;">
+            <h1>Welcome Back</h1>
+            <h4>Please log in to continue</h4>
           </div>
-            <div class="col-md-4">
-              <!-- <img [src]="/assets/images/to-do-list-logo.png"
-              style="width: 600px;height: 400px;">> -->
-              <img src="{{imageSrc}}" alt="{{imageAlt}}">
-              <h3 class="ultra">Ultra Techie</h3>
-          <p class="goals">“Our goals can only be reached through a vehicle of a plan, in which we must fervently believe, and upon which we must vigorously act. There is no other route to success.” – Pablo Picasso</p>
+          <br />
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <label for="email">Enter your email address:</label>
+              <input type="email" class="form-control" id="email" placeholder="jean@kyosk.app"
+                     required formControlName="email">
+            </div>
+            <div  *ngIf="email.errors?.['required'] && (email.touched || isSubmitted)" class="alert alert-danger">
+              Email address is required.
+            </div>
+            <div class="form-group">
+              <label for="password">Enter your password:</label>
+              <input type="password" class="form-control" id="password" placeholder="********"
+                     required formControlName="password">
+            </div>
+            <div *ngIf="password.errors?.['required'] && (password.touched || isSubmitted)" class="alert alert-danger">
+              Password is required.
+            </div>
+
+            <br />
+            <p class="text-end">Forgot Password?</p>
+            <br />
+            <button type="submit" class="btn btn-success">Log In</button>
+          </form>
+          <p class="text-end">Don't have an account? <a routerLink="/signup">Sign Up</a></p>
         </div>
-          
       </div>
+      <div class="col-md-4">
+        <img src="{{ imageSrc }}" alt="{{ imageAlt }}">
+        <h3 class="ultra">Ultra Techie</h3>
+        <p class="goals">“Our goals can only be reached through a vehicle of a plan, in which we
+          must fervently believe, and upon which we must vigorously act.
+          There is no other route to success.” – Pablo Picasso
+        </p>
       </div>
+    </div>
+  </div>
+</body>
+</html>
