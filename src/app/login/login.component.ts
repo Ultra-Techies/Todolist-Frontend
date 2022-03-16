@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,22 +21,32 @@ public loginForm !:FormGroup;
     })
   }
   login(){
-    this.http.get<any>("http://localhost:3000/SignupUsers")
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
+
+    const loginUserData = {
+      email: this.loginForm.value.Email,
+      password: this.loginForm.value.Password
+    };
+
+    this.http.post<any>("http://localhost:8080/api/user/email/auth", loginUserData, {headers: header})
     .subscribe(res=>
       {
-     const user= res.find((a:any)=>{
-       return a.Email ===this.loginForm.value.Email && a.Password ===this.loginForm.value.Password
-     });
-     if(user){
+     
+     if(res.email === this.loginForm.value.Email && res.id !== 0){
        alert("Login Success!!");
-       this.loginForm.reset()
-       this.router.navigate(['todo'])
+       //save user id in local storage
+        localStorage.setItem('userId', res._id);
+
+        this.loginForm.reset()
+        this.router.navigate(['todo'])
+
      }else{
        alert("User not found!!")
      }
-      
       },err=>{
-        alert("Something went wrong!!")
+        alert("Error: "+err.error.message);
       })
  }
 }
