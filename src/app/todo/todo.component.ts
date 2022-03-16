@@ -94,7 +94,10 @@ updateTask(task:any, sectionId:String){
   .subscribe(res=>{
     console.log("Updated Task: ",res);
     this.ngOnInit();
-  })
+  }),(err:any)=>{
+    alert("Unable to update task")
+    console.log("Error: ",err);
+  }
 }
 
 }
