@@ -31,7 +31,6 @@
                   class="list"
                   (cdkDropListDropped)="drop($event)">
                   <div class="box" *ngFor="let item of posts" cdkDrag>
-                    <!-- filter item.title to those of status  'progress'-->
                     {{item.title}}
                   </div>
                 </div>

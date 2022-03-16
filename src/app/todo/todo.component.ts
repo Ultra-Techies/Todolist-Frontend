@@ -18,6 +18,9 @@ export class TodoComponent implements OnInit{
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      //console.log("Moved: ",event.previousContainer.data[event.previousIndex]);
+      //console.log new container
+      this.updateTask(event.previousContainer.data[event.previousIndex], event.container.id);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -67,4 +70,33 @@ deleteUser(id: any){
   })
 
 } 
+
+//update task status on move to new section
+updateTask(task:any, sectionId:String){
+  console.log("New Status: ",sectionId);
+
+  //if section id is cdk-drop-list-0 then set task status to created, 
+  //if section id is cdk-drop-list-1 then set task status to progress, 
+  //if section id is cdk-drop-list-2 then set task status to done 
+
+  if(sectionId === 'cdk-drop-list-0'){
+    task.status = 'created';
+  }
+  else if(sectionId === 'cdk-drop-list-1'){
+    task.status = 'progress';
+  }
+  else if(sectionId === 'cdk-drop-list-2'){
+    task.status = 'done';
+  }
+
+  let header = new HttpHeaders();
+  header.append('Content-Type', 'application/json');
+  header.append('Access-Control-Allow-Origin', '*');
+  this.http.put(`http://localhost:8080/api/task/update/${task.id}`,task,{headers:header})
+  .subscribe(res=>{
+    console.log("Updated Task: ",res);
+    this.ngOnInit();
+  })
+}
+
 }
