@@ -95,7 +95,7 @@ updateTask(task:any, sectionId:String){
     console.log("Updated Task: ",res);
     this.ngOnInit();
   }),(err:any)=>{
-    alert("Unable to update task")
+    alert("Unable to update task, try again!")
     console.log("Error: ",err);
   }
 }
