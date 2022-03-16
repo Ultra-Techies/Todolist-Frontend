@@ -56,7 +56,7 @@ export class TodoComponent implements OnInit {
 
     //call api to get all tasks
     this.http
-      .get('http://localhost:8080/api/task/' + userId, { headers: header })
+      .get(Utils.BASE_URL + 'task/' + userId, { headers: header })
       .subscribe((res) => {
         const createdTasks = Object.values(res);
         console.log('Tasks: ', createdTasks);
@@ -72,7 +72,7 @@ export class TodoComponent implements OnInit {
     this.toastr.success(message);
   }
   deleteItem(id: any) {
-    this.http.delete('http://localhost:8080/api/task/delete/' + id).subscribe(
+    this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
         this.showToastMessage('Task Deleted Successfully');
         this.ngOnInit();
@@ -110,7 +110,7 @@ export class TodoComponent implements OnInit {
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
     this.http
-      .put(`http://localhost:8080/api/task/update/${task.id}`, task, {
+      .put(Utils.BASE_URL + `task/update/${task.id}`, task, {
         headers: header,
       })
       .subscribe((res) => {

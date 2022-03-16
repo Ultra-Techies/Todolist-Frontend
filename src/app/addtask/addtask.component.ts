@@ -42,7 +42,7 @@ export class AddtaskComponent implements OnInit {
     };
 
     this.http
-      .post('http://localhost:8080/api/task/add/' + userId, newTaskData, {
+      .post(Utils.BASE_URL + 'task/add/' + userId, newTaskData, {
         headers: header,
       })
       .subscribe(

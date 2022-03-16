@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import Utils from '../helpers/utils';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -27,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
     //make API call
     this.http
-      .get('http://localhost:8080/api/user/' + userId, { headers: header })
+      .get(Utils.BASE_URL + '/user/' + userId, { headers: header })
       .subscribe((res) => {
         this.SignupUser = res;
         console.log(this.SignupUser);

@@ -1,5 +1,8 @@
 //formats date/time into yyyy-mm-dd hh:mm:ss format
 export default class Utils {
+  //declare BASE_URL
+  static BASE_URL = 'http://localhost:8080/api/';
+
   static formatDate(date: any): any {
     let date_ = new Date(date);
     let dd = String(date_.getDate()).padStart(2, '0');
