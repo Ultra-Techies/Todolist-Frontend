@@ -80,6 +80,13 @@ export class TodoComponent implements OnInit {
         this.posts = createdTasks.filter((task) => task.status === 'progress');
         this.done = createdTasks.filter((task) => task.status === 'done');
       });
+
+    //call api to get user details
+    this.http
+      .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
+      .subscribe((res) => {
+        this.SignupUser = res;
+      });
   }
 
   deleteItem(id: any) {
