@@ -1,58 +1,130 @@
-<div class="container">
-  <app-navbar></app-navbar>
-  <app-addtask></app-addtask>
-  <br />
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-9">
-      <div cdkDropListGroup>
-        <div class="todo-container">
-          <h3>Created</h3>
-          <div
-            cdkDropList
-            [cdkDropListData]="created"
-            class="list"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="box" *ngFor="let item of created" cdkDrag>
-              {{ item.title }}
-              <a class="btn">
-                <i
-                  (click)="deleteItem(item.id)"
-                  class="fa fa-trash"
-                  style="cursor: pointer"
-                  aria-hidden="true"
-                ></i>
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar" style="align-items: center">
+    <div class="sidebar-header">
+      <h3>Ultra Techies</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a routerLink="/todo">Home</a>
+      </li>
+      <li>
+        <a href="/profile">Profile</a>
+      </li>
+      <li>
+        <a class="button" (click)="Logout()">Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+      <div class="container-fluid">
+        <button
+          type="button"
+          id="sidebarCollapse"
+          class="btn btn-info"
+          style="background-color: #0ca789"
+        >
+          <i class="fa fa-align-left"></i>
+          <!-- <span>Toggle Sidebar</span> -->
+        </button>
+        <button
+          class="btn btn-light d-inline-block d-lg-none ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-align-justify"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto" style="margin-left: auto">
+            <li class="nav-item" style="margin: 20px">
+              <p>{{ today | date: "fullDate" }}</p>
+            </li>
+            <li class="nav-item" style="margin: 10px">
+              <a class="nav-link" href="#">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
               </a>
+            </li>
+            <li class="nav-item" style="margin: 18px">
+              <p *ngFor="let users of SignupUser">{{ users.username }}</p>
+            </li>
+            <li class="nav-item navbar-brand">
+              <a routerLink="/profile" role="button">
+                <img
+                  src="{{ imageSrc }}"
+                  alt="{{ imageAlt }}"
+                  width="40"
+                  height="40"
+                  class="rounded-circle"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div cdkDropListGroup>
+      <div class="row" style="margin-left: 50px">
+        <div class="col-md-4">
+          <div class="todo-container">
+            <h3>Created</h3>
+            <div
+              cdkDropList
+              [cdkDropListData]="created"
+              class="list"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="box" *ngFor="let item of created" cdkDrag>
+                {{ item.title }}
+                <a class="btn">
+                  <i
+                    (click)="deleteItem(item.id)"
+                    class="fa fa-trash"
+                    style="cursor: pointer"
+                    aria-hidden="true"
+                  ></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        <div class="todo-container">
-          <h3>In Progress</h3>
+        <div class="col-md-4">
+          <div class="todo-container">
+            <h3>In Progress</h3>
 
-          <div
-            cdkDropList
-            [cdkDropListData]="posts"
-            class="list"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="box" *ngFor="let item of posts" cdkDrag>
-              {{ item.title }}
+            <div
+              cdkDropList
+              [cdkDropListData]="posts"
+              class="list"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="box" *ngFor="let item of posts" cdkDrag>
+                {{ item.title }}
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="todo-container">
+            <h3>Done</h3>
 
-        <div class="todo-container">
-          <h3>Done</h3>
-
-          <div
-            cdkDropList
-            [cdkDropListData]="done"
-            class="list"
-            (cdkDropListDropped)="drop($event)"
-          >
-            <div class="box" *ngFor="let item of done" cdkDrag>
-              {{ item.title }}
+            <div
+              cdkDropList
+              [cdkDropListData]="done"
+              class="list"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div class="box" *ngFor="let item of done" cdkDrag>
+                {{ item.title }}
+              </div>
             </div>
           </div>
         </div>

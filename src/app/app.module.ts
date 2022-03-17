@@ -7,8 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddtaskComponent } from './addtask/addtask.component';
 import { TodoComponent } from './todo/todo.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -22,8 +20,6 @@ import { ToastrModule } from 'ngx-toastr';
     AppComponent,
     SignupComponent,
     ProfileComponent,
-    NavbarComponent,
-    SidebarComponent,
     AddtaskComponent,
     TodoComponent,
     LoginComponent,

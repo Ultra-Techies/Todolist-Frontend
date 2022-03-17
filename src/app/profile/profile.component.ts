@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import Utils from '../helpers/utils';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-profile',
@@ -11,6 +12,7 @@ import Utils from '../helpers/utils';
 export class ProfileComponent implements OnInit {
   imageSrc = 'assets/images/Avatar.png';
   imageAlt = 'Avatar';
+  today: number = Date.now();
   SignupUser: any = {
     Username: '',
     Email: '',
@@ -19,6 +21,11 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+      });
+    });
     console.log('ngOnInit');
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
@@ -35,4 +42,7 @@ export class ProfileComponent implements OnInit {
         console.log(this.SignupUser);
       });
   }
+  Logout() {}
+  updateProfile() {}
+  deleteProfile(id: any) {}
 }

@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Utils from '../helpers/utils';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-todo',
@@ -15,6 +16,14 @@ import Utils from '../helpers/utils';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
+  imageSrc = 'assets/images/Avatar.png';
+  imageAlt = 'Avatar';
+  today: number = Date.now();
+  SignupUser: any = {
+    Username: '',
+    Email: '',
+    Password: '',
+  };
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -45,6 +54,11 @@ export class TodoComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+      });
+    });
     console.log('ngOnInit');
 
     let header = new HttpHeaders();
@@ -123,4 +137,5 @@ export class TodoComponent implements OnInit {
         console.log('Error: ', err);
       };
   }
+  Logout() {}
 }
