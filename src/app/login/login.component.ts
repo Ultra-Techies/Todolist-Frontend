@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
-            this.showToastMessage('Login Success!!', false);
+            this.toastr.success('Profile Updated!', 'Success');
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
@@ -55,22 +55,13 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['todo']);
             }, 3000);
           } else {
-            this.showToastMessage('User not found!!', true);
+            this.toastr.success('Profile Updated!', 'Error');
             this.loginForm.reset();
           }
         },
         (err) => {
-          this.showToastMessage('Error: ' + err.error.message, true);
+          this.toastr.success('Profile Updated!', 'Error');
         }
       );
-  }
-
-  showToastMessage(message: string = 'null', isError: boolean = false) {
-    //if error is true then show error toast else show success toast
-    if (isError) {
-      this.toastr.error(message, 'Error');
-    } else {
-      this.toastr.success(message, 'Success');
-    }
   }
 }

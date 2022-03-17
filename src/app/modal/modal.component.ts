@@ -51,25 +51,16 @@ export class ModalComponent implements OnInit {
         })
         .subscribe(
           (res) => {
-            this.showToastMessage('Task added successfully', false);
+            this.toastr.success('Profile Updated!', 'Success');
             this.modalRef.close(message);
           },
           (err) => {
             console.log('Error: ' + err);
-            this.showToastMessage('Unable to add task, try again!', true);
+            this.toastr.success('Profile Updated!', 'Error');
           }
         );
     } else {
-      this.showToastMessage('Unable to add task, try again!', true);
-    }
-  }
-
-  showToastMessage(message: string = 'null', isError: boolean = false) {
-    //if error is true then show error toast else show success toast
-    if (isError) {
-      this.toastr.error(message, 'Error');
-    } else {
-      this.toastr.success(message, 'Success');
+      this.toastr.success('Profile Updated!', 'Error');
     }
   }
 }

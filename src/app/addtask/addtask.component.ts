@@ -36,13 +36,4 @@ export class AddtaskComponent implements OnInit {
       console.log(message);
     });
   }
-
-  showToastMessage(message: string = 'null', isError: boolean = false) {
-    //if error is true then show error toast else show success toast
-    if (isError) {
-      this.toastr.error(message, 'Error');
-    } else {
-      this.toastr.success(message, 'Success');
-    }
-  }
 }

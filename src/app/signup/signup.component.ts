@@ -42,14 +42,14 @@ export class SignupComponent implements OnInit {
       username: this.signupForm.value.Username,
       email: this.signupForm.value.Email,
       password: this.signupForm.value.Password,
-      name: this.signupForm.value.username,
+      name: this.signupForm.value.Username,
     };
 
     this.http
       .post<any>(Utils.BASE_URL + 'user', postUserData, { headers: header })
       .subscribe(
         (res) => {
-          this.showToastMessage('Signup SuccessFul', false);
+          this.toastr.success('Profile Updated!', 'Success');
 
           //wait for 3 seconds
           setTimeout(() => {
@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
           }, 3000);
         },
         (err: any) => {
-          this.showToastMessage('Error: ' + err.error.message, true);
+          this.toastr.success('Profile Updated!', 'Error');
           this.router.navigate(['signup']);
           if (err.error instanceof Error) {
             console.log('Client-side error occured.');
@@ -67,14 +67,5 @@ export class SignupComponent implements OnInit {
           }
         }
       );
-  }
-
-  showToastMessage(message: string = 'null', isError: boolean = false) {
-    //if error is true then show error toast else show success toast
-    if (isError) {
-      this.toastr.error(message, 'Error');
-    } else {
-      this.toastr.success(message, 'Success');
-    }
   }
 }

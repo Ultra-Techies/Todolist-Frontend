@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import Utils from '../helpers/utils';
 import * as $ from 'jquery';
+import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +15,24 @@ export class ProfileComponent implements OnInit {
   imageSrc = 'assets/images/Avatar.png';
   imageAlt = 'Avatar';
   today: number = Date.now();
-  SignupUser: any = {
-    Username: '',
-    Email: '',
-    Password: '',
+  loggedInUser: any = {
+    username: '',
+    email: '',
+    password: '',
   };
-  constructor(private http: HttpClient) {}
+
+  public updateUserForm!: FormGroup;
+  constructor(
+    private http: HttpClient,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
+  ) {}
+
+  userID: any;
+  username: any = [];
+  emailAddress: any = [];
+  userPassword: any = [];
+  photo: any = [];
 
   ngOnInit(): void {
     $(document).ready(function () {
@@ -38,11 +52,73 @@ export class ProfileComponent implements OnInit {
     this.http
       .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
       .subscribe((res) => {
-        this.SignupUser = res;
-        console.log(this.SignupUser);
+        this.loggedInUser = Object.entries(res);
+
+        //filter logged in user data to get value of key 'username'
+        this.username = this.loggedInUser.filter(
+          (item) => item[0] === 'username'
+        );
+
+        this.emailAddress = this.loggedInUser.filter(
+          (item) => item[0] === 'email'
+        );
+
+        this.userID = userId;
+
+        this.photo = this.loggedInUser.filter((item) => item[0] === 'photo');
+
+        console.log(this.photo);
       });
+
+    this.updateUserForm = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Email: ['', Validators.email],
+      Password: ['', Validators.required],
+    });
   }
   Logout() {}
-  updateProfile() {}
-  deleteProfile(id: any) {}
+  updateProfile(user_id: any) {
+    console.log('Username: ' + this.username);
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
+
+    //check if username, email, and password have been changed
+    //if they have find out which ones have changed and create payload
+    let payload = {};
+    if (this.username[1] !== this.updateUserForm.value.Email) {
+      payload['username'] = this.updateUserForm.value.Username;
+    }
+    if (this.emailAddress[1] !== this.updateUserForm.value.Email) {
+      payload['email'] = this.updateUserForm.value.Email;
+    }
+    if (this.userPassword[1] !== this.updateUserForm.value.Password) {
+      payload['password'] = this.updateUserForm.value.Password;
+    }
+
+    //generate payload url in format of
+    //localhost: 8080/api/user/25?username=malcolmmaima&password=1234&name=Malcolm Maima&email=malcolm@gmail.com for every value that have changed
+    //e.g. if only username has changed, the url would be localhost: 8080/api/user/25?username=malcolmmaima
+    //if username and email have changed, the url would be localhost: 8080/api/user/25?username=malcolmmaima&password=1234&name=Malcolm Maima&email=malcolm@gmail.com
+    //and so on
+    let url = Utils.BASE_URL + 'user/' + user_id + '?';
+    for (let key in payload) {
+      url += '&' + key + '=' + payload[key];
+    }
+
+    //make API call
+    this.http.put(url, {}, { headers: header }).subscribe(
+      (res) => {
+        this.toastr.success('Profile Updated!', 'Success');
+        console.log(res);
+      },
+      (err) => {
+        this.toastr.error('Profile Update Failed!', 'Error');
+      }
+    );
+  }
+
+  deleteProfile(user_id: any) {
+    console.log('User ID: ' + user_id);
+  }
 }
