@@ -45,26 +45,23 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
-            this.showToastMessage('Login Success!!');
+            this.toastr.success('Login Successful!', 'Success');
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
-            //wait for 2 seconds
+            //wait for 3 seconds
             setTimeout(() => {
               this.loginForm.reset();
               this.router.navigate(['todo']);
-            }, 2000);
+            }, 3000);
           } else {
-            this.showToastMessage('User not found!!');
+            this.toastr.success('Login Failed!', 'Error');
+            this.loginForm.reset();
           }
         },
         (err) => {
-          alert('Error: ' + err.error.message);
+          this.toastr.success('Login Failed!', 'Error');
         }
       );
-  }
-
-  showToastMessage(message: string = 'null') {
-    this.toastr.success(message);
   }
 }

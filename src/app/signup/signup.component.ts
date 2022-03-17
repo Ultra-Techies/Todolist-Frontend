@@ -42,19 +42,23 @@ export class SignupComponent implements OnInit {
       username: this.signupForm.value.Username,
       email: this.signupForm.value.Email,
       password: this.signupForm.value.Password,
-      name: this.signupForm.value.username,
+      name: this.signupForm.value.Username,
     };
 
     this.http
       .post<any>(Utils.BASE_URL + 'user', postUserData, { headers: header })
       .subscribe(
         (res) => {
-          this.showToastMessage('Signup SuccessFul');
-          this.signupForm.reset();
-          this.router.navigate(['login']);
+          this.toastr.success('Signup Successful', 'Success');
+
+          //wait for 3 seconds
+          setTimeout(() => {
+            this.signupForm.reset();
+            this.router.navigate(['login']);
+          }, 3000);
         },
         (err: any) => {
-          alert('Error: ' + err.error.message);
+          this.toastr.success('Signup failed!', 'Error');
           this.router.navigate(['signup']);
           if (err.error instanceof Error) {
             console.log('Client-side error occured.');
@@ -63,9 +67,5 @@ export class SignupComponent implements OnInit {
           }
         }
       );
-  }
-
-  showToastMessage(message: string = 'null') {
-    this.toastr.success(message);
   }
 }

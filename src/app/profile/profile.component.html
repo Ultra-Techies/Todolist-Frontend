@@ -2,7 +2,7 @@
   <!-- Sidebar  -->
   <nav id="sidebar" style="align-items: center">
     <div class="sidebar-header">
-      <h3>Ultra Techies</h3>
+      <h3>Todo App</h3>
     </div>
 
     <ul class="list-unstyled components">
@@ -54,12 +54,12 @@
               </a>
             </li>
             <li class="nav-item" style="margin: 18px">
-              <p *ngFor="let users of SignupUser">{{ users.username }}</p>
+              <p *ngFor="let users of loggedInUser">{{ users.username }}</p>
             </li>
             <li class="nav-item navbar-brand">
               <a routerLink="/profile" role="button">
                 <img
-                  src="{{ imageSrc }}"
+                  src="{{ photo[0][1] }}"
                   alt="{{ imageAlt }}"
                   width="40"
                   height="40"
@@ -72,95 +72,106 @@
       </div>
     </nav>
 
-    <div class="col" style="margin-top: 20px" *ngIf="SignupUser">
-      <div
-        class="d-flex flex-column align-items-center text-center p-3 py-5"
-        *ngFor="let users of SignupUser"
-      >
+    <div class="col" style="margin-top: 20px">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
         <!-- <img class="rounded-circle mt-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQF2psCzfbB611rnUhxgMi-lc2oB78ykqDGYb4v83xQ1pAbhPiB&usqp=CAU"> -->
         <img
           class="rounded-circle mt-5"
           style="width: 100px; height: 100px"
-          src="{{ imageSrc }}"
+          src="{{ photo[0][1] }}"
           alt="{{ imageAlt }}"
         />
-        <span class="font-weight-bold">{{ users.username }}</span>
-        <span class="text-black-50">{{ users.email }}</span
+        <span class="font-weight-bold">{{ username[0][1] }}</span>
+        <span class="text-black-50">{{ emailAddress[0][1] }}</span
         ><span> </span>
       </div>
       <div class="p-3 py-5" style="margin-top: -50px">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">Profile Settings</h4>
-          <a href="#" class="btn">
-            <i
-              (click)="updateProfile()"
-              class="fa fa-pencil"
-              style="cursor: pointer"
-              aria-hidden="true"
-            ></i>
-          </a>
         </div>
-        <div class="row mt-2">
-          <div class="col-md-6" *ngFor="let users of SignupUser">
-            <label class="labels">UserName</label
-            ><input
-              type="text"
-              class="form-control"
-              placeholder=""
-              value="{{ users.username }}"
-            />
+        <form>
+          <form [formGroup]="updateUserForm" (Submit)="updateProfile(userID)">
+            <div class="form-group">
+              <label for="username">Enter Your Username:</label>
+              <input
+                formControlName="Username"
+                type="text"
+                class="form-control"
+                id="username"
+                autocomplete="disabled"
+                placeholder="{{ username[0][1] }}"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  updateUserForm.controls['Username'].dirty &&
+                  updateUserForm.hasError('required', 'Username')
+                "
+                >Username is required</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="emailaddress"> Enter Your Email address:</label>
+              <input
+                formControlName="Email"
+                type="email"
+                class="form-control"
+                id="emailaddress"
+                autocomplete="disabled"
+                placeholder="{{ emailAddress[0][1] }}"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  updateUserForm.controls['Email'].dirty &&
+                  updateUserForm.hasError('email', 'Email')
+                "
+                >Email is required</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="pwd">Enter Password:</label>
+              <input
+                formControlName="Password"
+                type="password"
+                class="form-control"
+                id="pwd"
+                placeholder="********"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  updateUserForm.controls['Password'].dirty &&
+                  updateUserForm.hasError('required', 'Password')
+                "
+                >Password is required</span
+              >
+            </div>
+          </form>
+          <div class="row mt-3">
+            <div class="col-md-6 text-center" style="margin-bottom: -50px">
+              <button
+                class="btn btn-success profile-button"
+                type="button"
+                style="width: 100%"
+                (click)="updateProfile(userID)"
+              >
+                Update Profile
+              </button>
+            </div>
+            <br /><br />
+            <div class="col-md-6 text-center" style="margin-bottom: -50px">
+              <button
+                class="btn btn-danger profile-button"
+                type="button"
+                style="width: 100%"
+                (click)="deleteProfile(userID)"
+              >
+                Delete Profile
+              </button>
+            </div>
           </div>
-          <div class="col-md-6" *ngFor="let users of SignupUser">
-            <label class="labels">FullName</label
-            ><input
-              type="text"
-              class="form-control"
-              placeholder=""
-              value="{{ users.name }}"
-            />
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-md-6" *ngFor="let users of SignupUser">
-            <label class="labels">Email Address:</label
-            ><input
-              type="email"
-              class="form-control"
-              placeholder=""
-              value="{{ users.email }}"
-            />
-          </div>
-          <div class="col-md-6" *ngFor="let users of SignupUser">
-            <label class="labels">Password:</label
-            ><input
-              type="password"
-              class="form-control"
-              placeholder=""
-              value="{{ users.password }}"
-            />
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-md-6 text-center" style="margin-bottom: -50px">
-            <button
-              class="btn btn-success profile-button"
-              type="button"
-              style="width: 100%"
-            >
-              Update Profile
-            </button>
-          </div>
-          <div class="col-md-6 text-center" style="margin-bottom: -50px">
-            <button
-              class="btn btn-danger profile-button"
-              type="button"
-              style="width: 100%"
-            >
-              Delete Profile
-            </button>
-          </div>
-          <br />
-        </div>
+        </form>
       </div>
     </div>
   </div>

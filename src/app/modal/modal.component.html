@@ -1,0 +1,101 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="ModalLabel">Add New Task</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="modalRef.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form>
+          <form [formGroup]="addtaskForm" (Submit)="close()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Enter Task:</label>
+                  <input
+                    formControlName="task"
+                    type="text"
+                    class="form-control"
+                    id="task"
+                    placeholder="Create a dashboard"
+                    required
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addtaskForm.controls['task'].dirty &&
+                      addtaskForm.hasError('required', 'task')
+                    "
+                    >Task is required</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Enter Due Date:</label>
+                  <input
+                    formControlName="duedate"
+                    type="datetime-local"
+                    class="form-control"
+                    id="duedate"
+                    placeholder="21/03/2022 5:30PM"
+                    required
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addtaskForm.controls['duedate'].dirty &&
+                      addtaskForm.hasError('required', 'duedate')
+                    "
+                  >
+                    Due date is required</span
+                  >
+                </div>
+              </div>
+              <div class="col-md-12">
+                <br />
+                <div class="form-group">
+                  <label for="">Enter Description:</label>
+                  <input
+                    formControlName="description"
+                    type="text"
+                    class="form-control"
+                    id="task"
+                    placeholder="This is a random task description"
+                    required
+                    height="auto"
+                    maxRows="4"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addtaskForm.controls['task'].dirty &&
+                      addtaskForm.hasError('required', 'task')
+                    "
+                    >Description is required</span
+                  >
+                </div>
+              </div>
+            </div>
+            <br />
+          </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-success btn-lg float-right"
+    (click)="close()"
+    [disabled]="addtaskForm.invalid"
+  >
+    Add
+  </button>
+</div>

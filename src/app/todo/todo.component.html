@@ -2,15 +2,15 @@
   <!-- Sidebar  -->
   <nav id="sidebar" style="align-items: center">
     <div class="sidebar-header">
-      <h3>Ultra Techies</h3>
+      <h3>Todo App</h3>
     </div>
 
-    <ul class="list-unstyled components">
+    <ul class="list-unstyled components" style="padding-left: 10px">
       <li>
         <a routerLink="/todo">Home</a>
       </li>
       <li>
-        <a href="/profile">Profile</a>
+        <a routerLink="/profile">Profile</a>
       </li>
       <li>
         <a class="button" (click)="Logout()">Logout</a>
@@ -59,7 +59,7 @@
             <li class="nav-item navbar-brand">
               <a routerLink="/profile" role="button">
                 <img
-                  src="{{ imageSrc }}"
+                  src="{{ SignupUser.photo }}"
                   alt="{{ imageAlt }}"
                   width="40"
                   height="40"
@@ -71,6 +71,8 @@
         </div>
       </div>
     </nav>
+    <app-addtask></app-addtask>
+    <br />
     <div cdkDropListGroup>
       <div class="row" style="margin-left: 50px">
         <div class="col-md-4">

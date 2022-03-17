@@ -80,21 +80,25 @@ export class TodoComponent implements OnInit {
         this.posts = createdTasks.filter((task) => task.status === 'progress');
         this.done = createdTasks.filter((task) => task.status === 'done');
       });
+
+    //call api to get user details
+    this.http
+      .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
+      .subscribe((res) => {
+        this.SignupUser = res;
+      });
   }
 
-  showToastMessage(message: string = 'Your task is due') {
-    this.toastr.success(message);
-  }
   deleteItem(id: any) {
     this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
-        this.showToastMessage('Task Deleted Successfully');
+        this.toastr.success('Task deleted Successfully!', 'Success');
         this.ngOnInit();
         this.router.navigate(['todo']);
       },
       (err: any) => {
         console.log('Error: ', err);
-        this.showToastMessage('Unable to delete task, try again!');
+        this.toastr.success('Task Delete Failed!', 'Error');
       }
     );
   }
@@ -129,11 +133,11 @@ export class TodoComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log('Updated Task: ', res);
-        this.showToastMessage('Task updated successfully');
+        this.toastr.success('Task Updated Successfully!', 'Success');
         this.ngOnInit();
       }),
       (err: any) => {
-        this.showToastMessage('Unable to update task, try again!');
+        this.toastr.success('Task Update Failed!', 'Error');
         console.log('Error: ', err);
       };
   }

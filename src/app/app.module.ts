@@ -12,6 +12,9 @@ import { TodoComponent } from './todo/todo.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalComponent } from './modal/modal.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { filter } from 'rxjs';
 
@@ -23,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     AddtaskComponent,
     TodoComponent,
     LoginComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +34,11 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     HttpClientModule,
     DragDropModule,
-    //  BrowserAnimationsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MdbModalModule,
   ],
+  entryComponents: [ModalComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
