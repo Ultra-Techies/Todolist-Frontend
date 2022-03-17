@@ -1,14 +1,78 @@
-<div class="container rounded bg-white mt-5 mb-5">
-  <div>
-    <app-navbar></app-navbar>
-  </div>
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div
-      class="col-md-8 border-right"
-      style="margin-top: -70px"
-      *ngIf="SignupUser"
-    >
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <nav id="sidebar" style="align-items: center">
+    <div class="sidebar-header">
+      <h3>Ultra Techies</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li>
+        <a routerLink="/todo">Home</a>
+      </li>
+      <li>
+        <a href="/profile">Profile</a>
+      </li>
+      <li>
+        <a class="button" (click)="Logout()">Logout</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Page Content  -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          type="button"
+          id="sidebarCollapse"
+          class="btn btn-info"
+          style="background-color: #0ca789"
+        >
+          <i class="fa fa-align-left"></i>
+          <!-- <span>Toggle Sidebar</span> -->
+        </button>
+        <button
+          class="btn btn-light d-inline-block d-lg-none ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-align-justify"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto" style="margin-left: auto">
+            <li class="nav-item" style="margin: 20px">
+              <p>{{ today | date: "fullDate" }}</p>
+            </li>
+            <li class="nav-item" style="margin: 10px">
+              <a class="nav-link" href="#">
+                <i class="fa fa-bell-o" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="nav-item" style="margin: 18px">
+              <p *ngFor="let users of SignupUser">{{ users.username }}</p>
+            </li>
+            <li class="nav-item navbar-brand">
+              <a routerLink="/profile" role="button">
+                <img
+                  src="{{ imageSrc }}"
+                  alt="{{ imageAlt }}"
+                  width="40"
+                  height="40"
+                  class="rounded-circle"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="col" style="margin-top: 20px" *ngIf="SignupUser">
       <div
         class="d-flex flex-column align-items-center text-center p-3 py-5"
         *ngFor="let users of SignupUser"
@@ -20,15 +84,20 @@
           src="{{ imageSrc }}"
           alt="{{ imageAlt }}"
         />
-        <span class="font-weight-bold">{{ users.Username }}</span>
-        <span class="text-black-50">{{ users.Email }}</span
+        <span class="font-weight-bold">{{ users.username }}</span>
+        <span class="text-black-50">{{ users.email }}</span
         ><span> </span>
       </div>
       <div class="p-3 py-5" style="margin-top: -50px">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h4 class="text-right">Profile Settings</h4>
-          <a href="#">
-            <i class="fa fa-pencil" aria-hidden="true">Edit</i>
+          <a href="#" class="btn">
+            <i
+              (click)="updateProfile()"
+              class="fa fa-pencil"
+              style="cursor: pointer"
+              aria-hidden="true"
+            ></i>
           </a>
         </div>
         <div class="row mt-2">
@@ -38,10 +107,18 @@
               type="text"
               class="form-control"
               placeholder=""
-              value="{{ users.Username }}"
+              value="{{ users.username }}"
             />
           </div>
-          <!-- <div class="col-md-6"><label class="labels">FullName</label><input type="text" class="form-control" value={{SignupUser.username}} placeholder="FullName"></div> -->
+          <div class="col-md-6" *ngFor="let users of SignupUser">
+            <label class="labels">FullName</label
+            ><input
+              type="text"
+              class="form-control"
+              placeholder=""
+              value="{{ users.name }}"
+            />
+          </div>
         </div>
         <div class="row mt-3">
           <div class="col-md-6" *ngFor="let users of SignupUser">
@@ -49,8 +126,8 @@
             ><input
               type="email"
               class="form-control"
-              placeholder="johndoe@gmail.com"
-              value="{{ users.Email }}"
+              placeholder=""
+              value="{{ users.email }}"
             />
           </div>
           <div class="col-md-6" *ngFor="let users of SignupUser">
@@ -58,8 +135,8 @@
             ><input
               type="password"
               class="form-control"
-              placeholder="*********"
-              value="{{ users.Password }}"
+              placeholder=""
+              value="{{ users.password }}"
             />
           </div>
         </div>
@@ -82,15 +159,9 @@
               Delete Profile
             </button>
           </div>
+          <br />
         </div>
       </div>
     </div>
-    <!-- <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
-            </div>
-        </div> -->
   </div>
 </div>
