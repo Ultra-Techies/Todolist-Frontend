@@ -60,6 +60,7 @@ export class ModalComponent implements OnInit {
           }
         );
     } else {
+      this.showToastMessage('Unable to add task, try again!', true);
     }
   }
 
