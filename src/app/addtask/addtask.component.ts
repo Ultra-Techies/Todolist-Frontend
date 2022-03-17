@@ -30,7 +30,9 @@ export class AddtaskComponent implements OnInit {
   openModal() {
     this.modalRef = this.modalService.open(ModalComponent, {});
     this.modalRef.onClose.subscribe((message: any) => {
-      this.router.navigate(['todo']);
+      // this.router.navigate(['todo']);
+      //refresh the page
+      window.location.reload();
       console.log(message);
     });
   }
