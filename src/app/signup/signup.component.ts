@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
       .post<any>(Utils.BASE_URL + 'user', postUserData, { headers: header })
       .subscribe(
         (res) => {
-          this.showToastMessage('Signup SuccessFul');
+          this.showToastMessage('Signup SuccessFul', false);
 
           //wait for 3 seconds
           setTimeout(() => {
@@ -73,7 +73,8 @@ export class SignupComponent implements OnInit {
     //if error is true then show error toast else show success toast
     if (isError) {
       this.toastr.error(message, 'Error');
+    } else {
+      this.toastr.success(message, 'Success');
     }
-    this.toastr.success(message, 'Success');
   }
 }

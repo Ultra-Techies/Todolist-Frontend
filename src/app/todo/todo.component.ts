@@ -86,13 +86,14 @@ export class TodoComponent implements OnInit {
     //if error is true then show error toast else show success toast
     if (isError) {
       this.toastr.error(message, 'Error');
+    } else {
+      this.toastr.success(message, 'Success');
     }
-    this.toastr.success(message, 'Success');
   }
   deleteItem(id: any) {
     this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
-        this.showToastMessage('Task Deleted Successfully');
+        this.showToastMessage('Task Deleted Successfully', false);
         this.ngOnInit();
         this.router.navigate(['todo']);
       },
@@ -133,7 +134,7 @@ export class TodoComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log('Updated Task: ', res);
-        this.showToastMessage('Task updated successfully');
+        this.showToastMessage('Task updated successfully', false);
         this.ngOnInit();
       }),
       (err: any) => {

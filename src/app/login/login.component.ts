@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
-            this.showToastMessage('Login Success!!');
+            this.showToastMessage('Login Success!!', false);
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           }
         },
         (err) => {
-          alert('Error: ' + err.error.message);
+          this.showToastMessage('Error: ' + err.error.message, true);
         }
       );
   }
@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
     //if error is true then show error toast else show success toast
     if (isError) {
       this.toastr.error(message, 'Error');
+    } else {
+      this.toastr.success(message, 'Success');
     }
-    this.toastr.success(message, 'Success');
   }
 }

@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalComponent } from './modal/modal.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { filter } from 'rxjs';
 
@@ -33,7 +34,7 @@ import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
     AppRoutingModule,
     HttpClientModule,
     DragDropModule,
-    //  BrowserAnimationsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MdbModalModule,
   ],

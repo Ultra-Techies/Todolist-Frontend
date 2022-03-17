@@ -51,7 +51,7 @@ export class ModalComponent implements OnInit {
         })
         .subscribe(
           (res) => {
-            this.showToastMessage('Task added successfully');
+            this.showToastMessage('Task added successfully', false);
             this.modalRef.close(message);
           },
           (err) => {
@@ -68,7 +68,8 @@ export class ModalComponent implements OnInit {
     //if error is true then show error toast else show success toast
     if (isError) {
       this.toastr.error(message, 'Error');
+    } else {
+      this.toastr.success(message, 'Success');
     }
-    this.toastr.success(message, 'Success');
   }
 }
