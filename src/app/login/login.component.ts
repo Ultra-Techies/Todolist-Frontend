@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
-            this.toastr.success('Profile Updated!', 'Success');
+            this.toastr.success('Login Successful!', 'Success');
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
@@ -55,12 +55,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['todo']);
             }, 3000);
           } else {
-            this.toastr.success('Profile Updated!', 'Error');
+            this.toastr.success('Login Failed!', 'Error');
             this.loginForm.reset();
           }
         },
         (err) => {
-          this.toastr.success('Profile Updated!', 'Error');
+          this.toastr.success('Login Failed!', 'Error');
         }
       );
   }

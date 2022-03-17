@@ -51,12 +51,12 @@ export class ModalComponent implements OnInit {
         })
         .subscribe(
           (res) => {
-            this.toastr.success('Profile Updated!', 'Success');
+            this.toastr.success('Task Added Succesfully!', 'Success');
             this.modalRef.close(message);
           },
           (err) => {
             console.log('Error: ' + err);
-            this.toastr.success('Profile Updated!', 'Error');
+            this.toastr.success('Task Add Failed!', 'Error');
           }
         );
     } else {

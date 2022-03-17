@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
       .post<any>(Utils.BASE_URL + 'user', postUserData, { headers: header })
       .subscribe(
         (res) => {
-          this.toastr.success('Profile Updated!', 'Success');
+          this.toastr.success('Signup Successful', 'Success');
 
           //wait for 3 seconds
           setTimeout(() => {
@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
           }, 3000);
         },
         (err: any) => {
-          this.toastr.success('Profile Updated!', 'Error');
+          this.toastr.success('Signup failed!', 'Error');
           this.router.navigate(['signup']);
           if (err.error instanceof Error) {
             console.log('Client-side error occured.');

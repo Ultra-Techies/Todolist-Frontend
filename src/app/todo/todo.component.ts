@@ -85,13 +85,13 @@ export class TodoComponent implements OnInit {
   deleteItem(id: any) {
     this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
-        this.toastr.success('Profile Updated!', 'Success');
+        this.toastr.success('Task deleted Successfully!', 'Success');
         this.ngOnInit();
         this.router.navigate(['todo']);
       },
       (err: any) => {
         console.log('Error: ', err);
-        this.toastr.success('Profile Updated!', 'Error');
+        this.toastr.success('Task Delete Failed!', 'Error');
       }
     );
   }
@@ -126,11 +126,11 @@ export class TodoComponent implements OnInit {
       })
       .subscribe((res) => {
         console.log('Updated Task: ', res);
-        this.toastr.success('Profile Updated!', 'Success');
+        this.toastr.success('Task Updated Successfully!', 'Success');
         this.ngOnInit();
       }),
       (err: any) => {
-        this.toastr.success('Profile Updated!', 'Error');
+        this.toastr.success('Task Update Failed!', 'Error');
         console.log('Error: ', err);
       };
   }
