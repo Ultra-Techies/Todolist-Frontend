@@ -49,13 +49,14 @@ export class LoginComponent implements OnInit {
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
-            //wait for 2 seconds
+            //wait for 3 seconds
             setTimeout(() => {
               this.loginForm.reset();
               this.router.navigate(['todo']);
-            }, 2000);
+            }, 3000);
           } else {
-            this.showToastMessage('User not found!!');
+            this.showToastMessage('User not found!!', true);
+            this.loginForm.reset();
           }
         },
         (err) => {
@@ -64,7 +65,11 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  showToastMessage(message: string = 'null') {
-    this.toastr.success(message);
+  showToastMessage(message: string = 'null', isError: boolean = false) {
+    //if error is true then show error toast else show success toast
+    if (isError) {
+      this.toastr.error(message, 'Error');
+    }
+    this.toastr.success(message, 'Success');
   }
 }

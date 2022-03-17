@@ -48,17 +48,24 @@ export class AddtaskComponent implements OnInit {
       .subscribe(
         (res) => {
           this.showToastMessage('Task added successfully');
-          this.router.navigate(['todo']);
-          this.addtaskForm.reset();
+          //wait for 3 seconds
+          setTimeout(() => {
+            this.router.navigate(['todo']);
+            this.addtaskForm.reset();
+          }, 3000);
         },
         (err) => {
           console.log('Error: ' + err);
-          this.showToastMessage('Unable to add task, try again!');
+          this.showToastMessage('Unable to add task, try again!', true);
         }
       );
   }
 
-  showToastMessage(message: string = 'null') {
-    this.toastr.success(message);
+  showToastMessage(message: string = 'null', isError: boolean = false) {
+    //if error is true then show error toast else show success toast
+    if (isError) {
+      this.toastr.error(message, 'Error');
+    }
+    this.toastr.success(message, 'Success');
   }
 }

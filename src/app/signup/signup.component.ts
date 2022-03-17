@@ -50,11 +50,15 @@ export class SignupComponent implements OnInit {
       .subscribe(
         (res) => {
           this.showToastMessage('Signup SuccessFul');
-          this.signupForm.reset();
-          this.router.navigate(['login']);
+
+          //wait for 3 seconds
+          setTimeout(() => {
+            this.signupForm.reset();
+            this.router.navigate(['login']);
+          }, 3000);
         },
         (err: any) => {
-          alert('Error: ' + err.error.message);
+          this.showToastMessage('Error: ' + err.error.message, true);
           this.router.navigate(['signup']);
           if (err.error instanceof Error) {
             console.log('Client-side error occured.');
@@ -65,7 +69,11 @@ export class SignupComponent implements OnInit {
       );
   }
 
-  showToastMessage(message: string = 'null') {
-    this.toastr.success(message);
+  showToastMessage(message: string = 'null', isError: boolean = false) {
+    //if error is true then show error toast else show success toast
+    if (isError) {
+      this.toastr.error(message, 'Error');
+    }
+    this.toastr.success(message, 'Success');
   }
 }

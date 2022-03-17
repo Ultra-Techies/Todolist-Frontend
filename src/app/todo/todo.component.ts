@@ -82,8 +82,12 @@ export class TodoComponent implements OnInit {
       });
   }
 
-  showToastMessage(message: string = 'Your task is due') {
-    this.toastr.success(message);
+  showToastMessage(message: string = 'null', isError: boolean = false) {
+    //if error is true then show error toast else show success toast
+    if (isError) {
+      this.toastr.error(message, 'Error');
+    }
+    this.toastr.success(message, 'Success');
   }
   deleteItem(id: any) {
     this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
@@ -94,7 +98,7 @@ export class TodoComponent implements OnInit {
       },
       (err: any) => {
         console.log('Error: ', err);
-        this.showToastMessage('Unable to delete task, try again!');
+        this.showToastMessage('Unable to delete task, try again!', true);
       }
     );
   }
@@ -133,7 +137,7 @@ export class TodoComponent implements OnInit {
         this.ngOnInit();
       }),
       (err: any) => {
-        this.showToastMessage('Unable to update task, try again!');
+        this.showToastMessage('Unable to update task, try again!', true);
         console.log('Error: ', err);
       };
   }
