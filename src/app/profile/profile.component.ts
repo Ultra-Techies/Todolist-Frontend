@@ -25,7 +25,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   userID: any;
@@ -119,6 +120,27 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile(user_id: any) {
-    console.log('User ID: ' + user_id);
+    let header = new HttpHeaders();
+    header.append('Content-Type', 'application/json');
+    header.append('Access-Control-Allow-Origin', '*');
+
+    //make API call
+    this.http
+      .delete(Utils.BASE_URL + 'user/' + user_id, {
+        headers: header,
+      })
+      .subscribe(
+        (res) => {
+          this.toastr.success('Profile Deleted!', 'Success');
+          console.log(res);
+
+          //redirect to login page
+          this.router.navigate(['/login']);
+        },
+        (err) => {
+          this.toastr.error('Profile Delete Failed!', 'Error');
+          console.log(err);
+        }
+      );
   }
 }
