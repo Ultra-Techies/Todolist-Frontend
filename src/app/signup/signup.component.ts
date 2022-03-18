@@ -32,6 +32,14 @@ export class SignupComponent implements OnInit {
       ConfirmPassword: ['', Validators.required],
       // confpwd:['']
     });
+
+    //get user id from local storage
+    let userId = localStorage.getItem('userId');
+
+    if (userId !== null) {
+      this.router.navigate(['/todo']);
+      this.toastr.error('Please logout first!', 'Error');
+    }
   }
   signUp() {
     let header = new HttpHeaders();
@@ -58,7 +66,7 @@ export class SignupComponent implements OnInit {
           }, 3000);
         },
         (err: any) => {
-          this.toastr.success('Signup failed!', 'Error');
+          this.toastr.error('Signup failed!', 'Error');
           this.router.navigate(['signup']);
           if (err.error instanceof Error) {
             console.log('Client-side error occured.');

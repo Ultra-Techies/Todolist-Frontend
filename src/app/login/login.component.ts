@@ -27,6 +27,14 @@ export class LoginComponent implements OnInit {
       Email: ['', Validators.required],
       Password: ['', Validators.required],
     });
+
+    //get user id from local storage
+    let userId = localStorage.getItem('userId');
+
+    if (userId !== null) {
+      this.router.navigate(['/todo']);
+      this.toastr.success("You're already logged in!", 'Success');
+    }
   }
   login() {
     let header = new HttpHeaders();
@@ -55,12 +63,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['todo']);
             }, 3000);
           } else {
-            this.toastr.success('Login Failed!', 'Error');
+            this.toastr.error('Login Failed!', 'Error');
             this.loginForm.reset();
           }
         },
         (err) => {
-          this.toastr.success('Login Failed!', 'Error');
+          this.toastr.error('Login Failed!', 'Error');
         }
       );
   }

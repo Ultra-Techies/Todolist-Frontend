@@ -56,11 +56,11 @@ export class ModalComponent implements OnInit {
           },
           (err) => {
             console.log('Error: ' + err);
-            this.toastr.success('Task Add Failed!', 'Error');
+            this.toastr.error('Task Add Failed!', 'Error');
           }
         );
     } else {
-      this.toastr.success('Profile Updated!', 'Error');
+      this.toastr.error('Profile Updated!', 'Error');
     }
   }
 }
