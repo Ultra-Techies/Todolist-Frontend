@@ -134,6 +134,14 @@
                 aria-controls="collapseExample"
               >
                 <div>{{ item.title }}</div>
+                <a class="btn">
+                  <i
+                    (click)="deleteItem(item.id)"
+                    class="fa fa-trash"
+                    style="cursor: pointer"
+                    aria-hidden="true"
+                  ></i>
+                </a>
                 <!--Collapsed content-->
                 <div
                   id="collapseExample"
@@ -165,7 +173,15 @@
                 [attr.aria-expanded]="!basicCollapse.collapsed"
                 aria-controls="collapseExample"
               >
-                {{ item.title }}
+                <div>{{ item.title }}</div>
+                <a class="btn">
+                  <i
+                    (click)="deleteItem(item.id)"
+                    class="fa fa-trash"
+                    style="cursor: pointer"
+                    aria-hidden="true"
+                  ></i>
+                </a>
                 <!--Collapsed content-->
                 <div
                   id="collapseExample"
