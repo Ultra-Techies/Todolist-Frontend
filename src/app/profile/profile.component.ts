@@ -124,7 +124,10 @@ export class ProfileComponent implements OnInit {
         console.log(res);
       },
       (err) => {
-        this.toastr.error('Profile Update Failed!', 'Error');
+        this.toastr.error(
+          'Profile Update Failed, ' + err.error.message,
+          'Error'
+        );
       }
     );
   }
@@ -149,7 +152,10 @@ export class ProfileComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         (err) => {
-          this.toastr.error('Profile Delete Failed!', 'Error');
+          this.toastr.error(
+            'Profile Delete Failed, ' + err.error.message,
+            'Error'
+          );
           console.log(err);
         }
       );

@@ -66,13 +66,8 @@ export class SignupComponent implements OnInit {
           }, 3000);
         },
         (err: any) => {
-          this.toastr.error('Signup failed!', 'Error');
+          this.toastr.error('Signup failed, ' + err.error.message, 'Error');
           this.router.navigate(['signup']);
-          if (err.error instanceof Error) {
-            console.log('Client-side error occured.');
-          } else {
-            console.log('Server-side error occured.');
-          }
         }
       );
   }
