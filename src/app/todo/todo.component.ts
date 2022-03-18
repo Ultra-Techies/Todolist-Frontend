@@ -29,6 +29,8 @@ export class TodoComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {}
+
+  userID: any;
   created: any = [''];
   posts: any = [];
   done: any = [];
@@ -68,6 +70,12 @@ export class TodoComponent implements OnInit {
     //fetch userid from local storage
     let userId = localStorage.getItem('userId');
 
+    //check if user id is in local storage, if not redirect to login page
+    if (userId === null) {
+      this.router.navigate(['/login']);
+      this.toastr.error('Please Login First!', 'Error');
+    }
+
     //call api to get all tasks
     this.http
       .get(Utils.BASE_URL + 'task/' + userId, { headers: header })
@@ -98,7 +106,7 @@ export class TodoComponent implements OnInit {
       },
       (err: any) => {
         console.log('Error: ', err);
-        this.toastr.success('Task Delete Failed!', 'Error');
+        this.toastr.error('Task Delete Failed!', 'Error');
       }
     );
   }
@@ -137,9 +145,14 @@ export class TodoComponent implements OnInit {
         this.ngOnInit();
       }),
       (err: any) => {
-        this.toastr.success('Task Update Failed!', 'Error');
+        this.toastr.error('Task Update Failed!', 'Error');
         console.log('Error: ', err);
       };
   }
-  Logout() {}
+  Logout() {
+    //clear local storage then redirect to login page
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.toastr.success('Logged Out Successfully!', 'Success');
+  }
 }

@@ -49,6 +49,11 @@ export class ProfileComponent implements OnInit {
     //get user data from local storage
     let userId = localStorage.getItem('userId');
 
+    if (userId === null) {
+      this.router.navigate(['/login']);
+      this.toastr.error('Please Login First!', 'Error');
+    }
+
     //make API call
     this.http
       .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
@@ -77,7 +82,12 @@ export class ProfileComponent implements OnInit {
       Password: ['', Validators.required],
     });
   }
-  Logout() {}
+  Logout() {
+    //clear local storage then redirect to login page
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    this.toastr.success('Logged Out Successfully!', 'Success');
+  }
   updateProfile(user_id: any) {
     console.log('Username: ' + this.username);
     let header = new HttpHeaders();
@@ -135,6 +145,7 @@ export class ProfileComponent implements OnInit {
           console.log(res);
 
           //redirect to login page
+          localStorage.clear();
           this.router.navigate(['/login']);
         },
         (err) => {
