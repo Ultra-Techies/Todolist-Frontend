@@ -63,12 +63,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['todo']);
             }, 3000);
           } else {
-            this.toastr.error('Login Failed!', 'Error');
+            this.toastr.error('Login Failed, user does not exist!', 'Error');
             this.loginForm.reset();
           }
         },
         (err) => {
-          this.toastr.error('Login Failed!', 'Error');
+          this.toastr.error('Login Failed, ' + err.error.message, 'Error');
         }
       );
   }

@@ -106,7 +106,7 @@ export class TodoComponent implements OnInit {
       },
       (err: any) => {
         console.log('Error: ', err);
-        this.toastr.error('Task Delete Failed!', 'Error');
+        this.toastr.error('Task Delete Failed, ' + err.error.message, 'Error');
       }
     );
   }
@@ -145,7 +145,7 @@ export class TodoComponent implements OnInit {
         this.ngOnInit();
       }),
       (err: any) => {
-        this.toastr.error('Task Update Failed!', 'Error');
+        this.toastr.error('Task Update Failed, ' + err.error.message, 'Error');
         console.log('Error: ', err);
       };
   }
