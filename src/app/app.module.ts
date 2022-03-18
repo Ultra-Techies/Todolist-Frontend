@@ -12,6 +12,7 @@ import { TodoComponent } from './todo/todo.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
+import { EditprofileComponent } from './editprofile/editprofile.component';
 
 // import { filter } from 'rxjs';
 
@@ -23,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     AddtaskComponent,
     TodoComponent,
     LoginComponent,
+    EditprofileComponent,
   ],
   imports: [
     BrowserModule,
