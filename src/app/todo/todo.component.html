@@ -110,6 +110,14 @@
             >
               <div class="box" *ngFor="let item of posts" cdkDrag>
                 {{ item.title }}
+                 <a class="btn">
+                  <i
+                    (click)="deleteItem(item.id)"
+                    class="fa fa-trash"
+                    style="cursor: pointer"
+                    aria-hidden="true"
+                  ></i>
+                </a>
               </div>
             </div>
           </div>
@@ -126,6 +134,14 @@
             >
               <div class="box" *ngFor="let item of done" cdkDrag>
                 {{ item.title }}
+                 <a class="btn">
+                  <i
+                    (click)="deleteItem(item.id)"
+                    class="fa fa-trash"
+                    style="cursor: pointer"
+                    aria-hidden="true"
+                  ></i>
+                </a>
               </div>
             </div>
           </div>
