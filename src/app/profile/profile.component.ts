@@ -137,26 +137,43 @@ export class ProfileComponent implements OnInit {
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
 
-    //make API call
+    //Call DELETE on endpoint /api/task/deletebyuserid/user_id
     this.http
-      .delete(Utils.BASE_URL + 'user/' + user_id, {
+      .delete(Utils.BASE_URL + 'task/deletebyuserid/' + user_id, {
         headers: header,
       })
       .subscribe(
         (res) => {
-          this.toastr.success('Profile Deleted!', 'Success');
-          console.log(res);
+          console.log('All user tasks deleted successfully!');
 
-          //redirect to login page
-          localStorage.clear();
-          this.router.navigate(['/login']);
+          //Now delete account
+          this.http
+            .delete(Utils.BASE_URL + 'user/' + user_id, {
+              headers: header,
+            })
+            .subscribe(
+              (res) => {
+                this.toastr.success('Profile Deleted!', 'Success');
+                console.log(res);
+
+                //redirect to login page
+                localStorage.clear();
+                this.router.navigate(['/login']);
+              },
+              (err) => {
+                this.toastr.error(
+                  'Profile Delete Failed, ' + err.error.message,
+                  'Error'
+                );
+                console.log(err);
+              }
+            );
         },
         (err) => {
           this.toastr.error(
             'Profile Delete Failed, ' + err.error.message,
             'Error'
           );
-          console.log(err);
         }
       );
   }
