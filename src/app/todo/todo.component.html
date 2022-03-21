@@ -84,13 +84,8 @@
               class="list"
               (cdkDropListDropped)="drop($event)"
             >
-              <div
-                class="box"
-                *ngFor="let item of created"
-                cdkDrag
-                (click)="openModal(item)"
-              >
-                <div>{{ item.title }}</div>
+              <div class="box" *ngFor="let item of created" cdkDrag>
+                <div (click)="openModal(item)">{{ item.title }}</div>
                 <a class="btn">
                   <i
                     (click)="deleteItem(item.id)"
@@ -99,7 +94,6 @@
                     aria-hidden="true"
                   ></i>
                 </a>
-                <!--Collapsed content-->
               </div>
             </div>
           </div>

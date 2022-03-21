@@ -154,15 +154,18 @@ export class TodoComponent implements OnInit {
       };
   }
   openModal(item: any) {
-    this.modalRef = this.modalService.open(ViewTaskComponent, {
-      data: {
-        taskId: item.id,
-        title: item.title,
-        description: item.description,
-        dueDate: item.dueDate,
-        status: item.status,
-      },
-    });
+    if (item != null) {
+      this.modalRef = this.modalService.open(ViewTaskComponent, {
+        data: {
+          taskId: item.id,
+          title: item.title,
+          description: item.description,
+          dueDate: item.dueDate,
+          status: item.status,
+        },
+      });
+    }
+
     this.modalRef.onClose.subscribe((message: any) => {
       console.log('modal close: ', message);
       this.ngOnInit();
