@@ -28,7 +28,9 @@ export class AddtaskComponent implements OnInit {
     });
   }
   openModal() {
-    this.modalRef = this.modalService.open(ModalComponent, {});
+    this.modalRef = this.modalService.open(ModalComponent, {
+      modalClass: 'modal-dialog-scrollable',
+    });
     this.modalRef.onClose.subscribe((message: any) => {
       // this.router.navigate(['todo']);
       //refresh the page

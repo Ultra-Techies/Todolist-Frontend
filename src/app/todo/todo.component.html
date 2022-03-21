@@ -88,10 +88,7 @@
                 class="box"
                 *ngFor="let item of created"
                 cdkDrag
-                (click)="basicCollapse.toggle()"
-                role="button"
-                [attr.aria-expanded]="!basicCollapse.collapsed"
-                aria-controls="collapseExample"
+                (click)="openModal(item)"
               >
                 <div>{{ item.title }}</div>
                 <a class="btn">
@@ -103,13 +100,6 @@
                   ></i>
                 </a>
                 <!--Collapsed content-->
-                <div
-                  id="collapseExample"
-                  mdbCollapse
-                  #basicCollapse="mdbCollapse"
-                >
-                  {{ item.description }}
-                </div>
               </div>
             </div>
           </div>
@@ -128,10 +118,8 @@
                 class="box"
                 *ngFor="let item of posts"
                 cdkDrag
-                (click)="basicCollapse.toggle()"
+                (click)="openModal(item)"
                 role="button"
-                [attr.aria-expanded]="!basicCollapse.collapsed"
-                aria-controls="collapseExample"
               >
                 <div>{{ item.title }}</div>
                 <a class="btn">
@@ -142,14 +130,6 @@
                     aria-hidden="true"
                   ></i>
                 </a>
-                <!--Collapsed content-->
-                <div
-                  id="collapseExample"
-                  mdbCollapse
-                  #basicCollapse="mdbCollapse"
-                >
-                  {{ item.description }}
-                </div>
               </div>
             </div>
           </div>
@@ -168,10 +148,7 @@
                 class="box"
                 *ngFor="let item of done"
                 cdkDrag
-                (click)="basicCollapse.toggle()"
-                role="button"
-                [attr.aria-expanded]="!basicCollapse.collapsed"
-                aria-controls="collapseExample"
+                (click)="openModal(item)"
               >
                 <div>{{ item.title }}</div>
                 <a class="btn">
@@ -182,14 +159,6 @@
                     aria-hidden="true"
                   ></i>
                 </a>
-                <!--Collapsed content-->
-                <div
-                  id="collapseExample"
-                  mdbCollapse
-                  #basicCollapse="mdbCollapse"
-                >
-                  {{ item.description }}
-                </div>
               </div>
             </div>
           </div>

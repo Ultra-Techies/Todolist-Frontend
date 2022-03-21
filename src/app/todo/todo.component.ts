@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Utils from '../helpers/utils';
 import * as $ from 'jquery';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import { ViewTaskComponent } from '../view-task/view-task.component';
 
 @Component({
   selector: 'app-todo',
@@ -16,6 +18,7 @@ import * as $ from 'jquery';
   styleUrls: ['./todo.component.css'],
 })
 export class TodoComponent implements OnInit {
+  modalRef: MdbModalRef<ViewTaskComponent> | null = null;
   imageSrc = 'assets/images/Avatar.png';
   imageAlt = 'Avatar';
   today: number = Date.now();
@@ -27,7 +30,8 @@ export class TodoComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modalService: MdbModalService
   ) {}
 
   userID: any;
@@ -148,6 +152,21 @@ export class TodoComponent implements OnInit {
         this.toastr.error('Task Update Failed, ' + err.error.message, 'Error');
         console.log('Error: ', err);
       };
+  }
+  openModal(item: any) {
+    this.modalRef = this.modalService.open(ViewTaskComponent, {
+      data: {
+        taskId: item.id,
+        title: item.title,
+        description: item.description,
+        dueDate: item.dueDate,
+        status: item.status,
+      },
+    });
+    this.modalRef.onClose.subscribe((message: any) => {
+      console.log('modal close: ', message);
+      this.ngOnInit();
+    });
   }
   Logout() {
     //clear local storage then redirect to login page
