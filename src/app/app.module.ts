@@ -16,6 +16,7 @@ import { ModalComponent } from './modal/modal.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ViewTaskComponent } from './view-task/view-task.component';
 
 // import { filter } from 'rxjs';
 
@@ -28,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TodoComponent,
     LoginComponent,
     ModalComponent,
+    ViewTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MdbModalModule,
     MdbCollapseModule,
   ],
-  entryComponents: [ModalComponent],
+  entryComponents: [ModalComponent, ViewTaskComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title" id="ModalLabel">Add New Task</h5>
+  <h5 class="modal-title" id="ModalLabel">Edit Task: {{ title }}</h5>
   <button
     type="button"
     class="btn-close"
@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-md-12">
         <form>
-          <form [formGroup]="addtaskForm" (Submit)="close()">
+          <form [formGroup]="editTaskForm" (Submit)="close()">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -28,8 +28,8 @@
                   <span
                     class="text-danger"
                     *ngIf="
-                      addtaskForm.controls['task'].dirty &&
-                      addtaskForm.hasError('required', 'task')
+                      editTaskForm.controls['task'].dirty &&
+                      editTaskForm.hasError('required', 'task')
                     "
                     >Task is required</span
                   >
@@ -39,18 +39,19 @@
                 <div class="form-group">
                   <label for="">Enter Due Date:</label>
                   <input
-                    formControlName="duedate"
+                    formControlName="dueDate"
+                    [ngModel]="localCompleteDate"
                     type="datetime-local"
                     class="form-control"
-                    id="duedate"
-                    placeholder="21/03/2022 5:30PM"
+                    id="dueDate"
+                    placeholder="yyyy-MM-ddTHH:mm:ss"
                     required
                   />
                   <span
                     class="text-danger"
                     *ngIf="
-                      addtaskForm.controls['duedate'].dirty &&
-                      addtaskForm.hasError('required', 'duedate')
+                      editTaskForm.controls['duedate'].dirty &&
+                      editTaskForm.hasError('required', 'duedate')
                     "
                   >
                     Due date is required</span
@@ -69,13 +70,12 @@
                     placeholder="This is a random task description"
                     required
                     height="auto"
-                    maxRows="4"
                   />
                   <span
                     class="text-danger"
                     *ngIf="
-                      addtaskForm.controls['description'].dirty &&
-                      addtaskForm.hasError('required', 'description')
+                      editTaskForm.controls['description'].dirty &&
+                      editTaskForm.hasError('required', 'description')
                     "
                     >Description is required</span
                   >
@@ -94,8 +94,8 @@
     type="button"
     class="btn btn-success btn-lg float-right"
     (click)="close()"
-    [disabled]="addtaskForm.invalid"
+    [disabled]="editTaskForm.invalid"
   >
-    Add
+    Save
   </button>
 </div>
