@@ -59,7 +59,11 @@
             <li class="nav-item navbar-brand">
               <a routerLink="/profile" role="button">
                 <img
-                  src="{{ SignupUser.photo }}"
+                  src="{{
+                    SignupUser.photo
+                      ? SignupUser.photo
+                      : '../../assets/images/Avatar.png'
+                  }}"
                   alt="{{ imageAlt }}"
                   width="40"
                   height="40"
@@ -85,7 +89,18 @@
               (cdkDropListDropped)="drop($event)"
             >
               <div class="box" *ngFor="let item of created" cdkDrag>
-                <div (click)="openModal(item)">{{ item.title }}</div>
+                <div (click)="openModal(item)" style="width: 100%">
+                  {{ item.title }}
+                </div>
+                <!-- show fa-bell if item is due -->
+                <a class="btn">
+                  <i
+                    *ngIf="taskOverdue(item.dueDate, item.status)"
+                    class="fa fa-bell"
+                    style="color: red"
+                    aria-hidden="true"
+                  ></i>
+                </a>
                 <a class="btn">
                   <i
                     (click)="deleteItem(item.id)"
@@ -109,7 +124,18 @@
               (cdkDropListDropped)="drop($event)"
             >
               <div class="box" *ngFor="let item of posts" cdkDrag role="button">
-                <div (click)="openModal(item)">{{ item.title }}</div>
+                <div (click)="openModal(item)" style="width: 100%">
+                  {{ item.title }}
+                </div>
+                <!-- show fa-bell if item is due -->
+                <a class="btn">
+                  <i
+                    *ngIf="taskOverdue(item.dueDate, item.status)"
+                    class="fa fa-bell"
+                    style="color: red"
+                    aria-hidden="true"
+                  ></i>
+                </a>
                 <a class="btn">
                   <i
                     (click)="deleteItem(item.id)"
@@ -133,7 +159,9 @@
               (cdkDropListDropped)="drop($event)"
             >
               <div class="box" *ngFor="let item of done" cdkDrag>
-                <div (click)="openModal(item)">{{ item.title }}</div>
+                <div (click)="openModal(item)" style="width: 100%">
+                  {{ item.title }}
+                </div>
                 <a class="btn">
                   <i
                     (click)="deleteItem(item.id)"

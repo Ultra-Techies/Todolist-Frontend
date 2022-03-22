@@ -65,7 +65,6 @@ export class TodoComponent implements OnInit {
         $('#sidebar').toggleClass('active');
       });
     });
-    console.log('ngOnInit');
 
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
@@ -76,6 +75,7 @@ export class TodoComponent implements OnInit {
 
     //check if user id is in local storage, if not redirect to login page
     if (userId === null) {
+      localStorage.clear();
       this.router.navigate(['/login']);
       this.toastr.error('Please Login First!', 'Error');
     }
@@ -171,6 +171,23 @@ export class TodoComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
+  //takes item due date and returns true if date difference is less than or equal to 1
+  //and status is not done
+  taskOverdue(dueDate: any, status: any) {
+    console.log('Status: ', status);
+    try {
+      let date = new Date(dueDate);
+      let today = new Date();
+      let diff = Math.abs(date.getTime() - today.getTime());
+      let diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+      return diffDays <= 1 && status != 'done';
+    } catch (error) {
+      this.toastr.error('Something went wrong! ' + error.message, 'Error');
+      return false;
+    }
+  }
+
   Logout() {
     //clear local storage then redirect to login page
     localStorage.clear();
