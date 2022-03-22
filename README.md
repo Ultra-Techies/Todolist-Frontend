@@ -23,7 +23,7 @@
 
 
 
-### About the website
+### About the webapp
 
 The website has the following features to allow users plan their day:
 - Sign In and Sign Up Page
@@ -35,10 +35,8 @@ The website has the following features to allow users plan their day:
 - Profile Page - To allow users to view and change their account details.
 - Create Task Page - To allow users to add new tasks
 
+https://www.loom.com/share/19f6ae5b109b4c7580f721f7bd9be001
 
-
-#### Hosted
-https://dashboard.heroku.com/apps/ultratechie-todo
 ### Technical
 #### Technology Used
 This project uses:
