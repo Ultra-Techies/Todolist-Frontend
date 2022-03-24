@@ -21,7 +21,9 @@ export class TodoComponent implements OnInit {
   modalRef: MdbModalRef<ViewTaskComponent> | null = null;
   imageSrc = 'assets/images/Avatar.png';
   imageAlt = 'Avatar';
+  loading = false;
   today: number = Date.now();
+
   SignupUser: any = {
     Username: '',
     Email: '',
@@ -60,6 +62,7 @@ export class TodoComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.loading = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -79,6 +82,7 @@ export class TodoComponent implements OnInit {
       this.router.navigate(['/login']);
       this.toastr.error('Please Login First!', 'Error');
     } else {
+      this.loading = true;
       //call user api to get user details and make sure user still exists
       this.http
         .get(Utils.BASE_URL + 'user/' + userId, {
@@ -92,6 +96,7 @@ export class TodoComponent implements OnInit {
             this.SignupUser.Password = res.password;
             this.imageSrc = res.photo;
             this.imageAlt = res.username;
+            this.loading = false;
           },
           (err: any) => {
             this.toastr.error('Error, ' + err.error.message, 'Error');
@@ -105,15 +110,25 @@ export class TodoComponent implements OnInit {
     //call api to get all tasks
     this.http
       .get(Utils.BASE_URL + 'task/' + userId, { headers: header })
-      .subscribe((res) => {
-        const createdTasks = Object.values(res);
-        console.log('Tasks: ', createdTasks);
+      .subscribe(
+        (res) => {
+          const createdTasks = Object.values(res);
+          console.log('Tasks: ', createdTasks);
 
-        //filter tasks
-        this.created = createdTasks.filter((task) => task.status === 'created');
-        this.posts = createdTasks.filter((task) => task.status === 'progress');
-        this.done = createdTasks.filter((task) => task.status === 'done');
-      });
+          //filter tasks
+          this.created = createdTasks.filter(
+            (task) => task.status === 'created'
+          );
+          this.posts = createdTasks.filter(
+            (task) => task.status === 'progress'
+          );
+          this.done = createdTasks.filter((task) => task.status === 'done');
+        },
+        (err: any) => {
+          this.loading = false;
+          this.toastr.error('Error, ' + err.error.message, 'Error');
+        }
+      );
 
     //call api to get user details
     this.http
@@ -124,13 +139,16 @@ export class TodoComponent implements OnInit {
   }
 
   deleteItem(id: any) {
+    this.loading = true;
     this.http.delete(Utils.BASE_URL + 'task/delete/' + id).subscribe(
       (res) => {
+        this.loading = false;
         this.toastr.success('Task deleted Successfully!', 'Success');
         this.ngOnInit();
         this.router.navigate(['todo']);
       },
       (err: any) => {
+        this.loading = false;
         console.log('Error: ', err);
         this.toastr.error('Task Delete Failed, ' + err.error.message, 'Error');
       }
@@ -139,6 +157,7 @@ export class TodoComponent implements OnInit {
 
   //update task status on move to new section
   updateTask(task: any, sectionId: String) {
+    this.loading = true;
     //if section id is cdk-drop-list-0 then set task status to created,
     //if section id is cdk-drop-list-1 then set task status to progress,
     //if section id is cdk-drop-list-2 then set task status to done
@@ -164,11 +183,13 @@ export class TodoComponent implements OnInit {
         headers: header,
       })
       .subscribe((res) => {
+        this.loading = false;
         console.log('Updated Task: ', res);
         this.toastr.success('Task Updated Successfully!', 'Success');
         this.ngOnInit();
       }),
       (err: any) => {
+        this.loading = false;
         this.toastr.error('Task Update Failed, ' + err.error.message, 'Error');
         console.log('Error: ', err);
       };
@@ -187,7 +208,7 @@ export class TodoComponent implements OnInit {
     }
 
     this.modalRef.onClose.subscribe((message: any) => {
-      console.log('modal close: ', message);
+      this.loading = true;
       this.ngOnInit();
     });
   }
