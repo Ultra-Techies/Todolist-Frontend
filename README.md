@@ -1,17 +1,6 @@
+## Tushughuli App
 
-<p align="center">
-  <a href="https://github.com/Ultra-Techies">
-  <h3 align="center">TodoList Manager</h3>
-     </a>
-
-
-  <p align="center">
-    This is a simple web app where users can add and manage tasks in an organised manner. <br>
-    </p>
-</p>
-
-<br>
-
+This is a simple web app where users can add and manage tasks in an organised manner.
 
 ## Table of contents
 - [About the Website](#about-the-website)
@@ -35,9 +24,8 @@ The website has the following features to allow users plan their day:
 - Profile Page - To allow users to view and change their account details.
 - Create Task Page - To allow users to add new tasks
 
-https://www.loom.com/share/19f6ae5b109b4c7580f721f7bd9be001
-
 ### Technical
+
 #### Technology Used
 This project uses:
     - HTML
