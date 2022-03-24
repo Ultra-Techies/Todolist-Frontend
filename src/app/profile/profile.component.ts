@@ -52,6 +52,24 @@ export class ProfileComponent implements OnInit {
     if (userId === null) {
       this.router.navigate(['/login']);
       this.toastr.error('Please Login First!', 'Error');
+    } else {
+      //call user api to get user details and make sure user still exists
+      this.http
+        .get(Utils.BASE_URL + 'user/' + userId, {
+          headers: header,
+        })
+        .subscribe(
+          (res: any) => {
+            this.loggedInUser = res;
+            this.userID = userId;
+          },
+          (err: any) => {
+            this.toastr.error('Error, ' + err.error.message, 'Error');
+            //redirect to login page
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }
+        );
     }
 
     //make API call
