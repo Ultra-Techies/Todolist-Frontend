@@ -103,7 +103,6 @@ export class ProfileComponent implements OnInit {
         },
         (err) => {
           this.loading = false;
-          this.toastr.error('Error, ' + err.error.message, 'Error');
         }
       );
 
