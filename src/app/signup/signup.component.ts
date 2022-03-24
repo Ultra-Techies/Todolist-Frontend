@@ -42,6 +42,14 @@ export class SignupComponent implements OnInit {
     }
   }
   signUp() {
+    //check to see if passwords match
+    if (
+      this.signupForm.value.Password !== this.signupForm.value.ConfirmPassword
+    ) {
+      this.toastr.error('Passwords do not match!', 'Error');
+      return;
+    }
+
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');

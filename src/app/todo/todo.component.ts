@@ -78,6 +78,28 @@ export class TodoComponent implements OnInit {
       localStorage.clear();
       this.router.navigate(['/login']);
       this.toastr.error('Please Login First!', 'Error');
+    } else {
+      //call user api to get user details and make sure user still exists
+      this.http
+        .get(Utils.BASE_URL + 'user/' + userId, {
+          headers: header,
+        })
+        .subscribe(
+          (res: any) => {
+            this.userID = userId;
+            this.SignupUser.Username = res.username;
+            this.SignupUser.Email = res.email;
+            this.SignupUser.Password = res.password;
+            this.imageSrc = res.photo;
+            this.imageAlt = res.username;
+          },
+          (err: any) => {
+            this.toastr.error('Error, ' + err.error.message, 'Error');
+            //redirect to login page
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }
+        );
     }
 
     //call api to get all tasks
