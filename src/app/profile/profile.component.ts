@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   imageSrc = 'assets/images/Avatar.png';
   imageAlt = 'Avatar';
   today: number = Date.now();
+  loading = false;
+
   loggedInUser: any = {
     username: '',
     email: '',
@@ -36,6 +38,7 @@ export class ProfileComponent implements OnInit {
   photo: any = [];
 
   ngOnInit(): void {
+    this.loading = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -53,6 +56,7 @@ export class ProfileComponent implements OnInit {
       this.router.navigate(['/login']);
       this.toastr.error('Please Login First!', 'Error');
     } else {
+      this.loading = true;
       //call user api to get user details and make sure user still exists
       this.http
         .get(Utils.BASE_URL + 'user/' + userId, {
@@ -60,10 +64,12 @@ export class ProfileComponent implements OnInit {
         })
         .subscribe(
           (res: any) => {
+            this.loading = false;
             this.loggedInUser = res;
             this.userID = userId;
           },
           (err: any) => {
+            this.loading = false;
             this.toastr.error('Error, ' + err.error.message, 'Error');
             //redirect to login page
             localStorage.clear();
@@ -75,24 +81,31 @@ export class ProfileComponent implements OnInit {
     //make API call
     this.http
       .get(Utils.BASE_URL + 'user/' + userId, { headers: header })
-      .subscribe((res) => {
-        this.loggedInUser = Object.entries(res);
+      .subscribe(
+        (res) => {
+          this.loading = false;
+          this.loggedInUser = Object.entries(res);
 
-        //filter logged in user data to get value of key 'username'
-        this.username = this.loggedInUser.filter(
-          (item) => item[0] === 'username'
-        );
+          //filter logged in user data to get value of key 'username'
+          this.username = this.loggedInUser.filter(
+            (item) => item[0] === 'username'
+          );
 
-        this.emailAddress = this.loggedInUser.filter(
-          (item) => item[0] === 'email'
-        );
+          this.emailAddress = this.loggedInUser.filter(
+            (item) => item[0] === 'email'
+          );
 
-        this.userID = userId;
+          this.userID = userId;
 
-        this.photo = this.loggedInUser.filter((item) => item[0] === 'photo');
+          this.photo = this.loggedInUser.filter((item) => item[0] === 'photo');
 
-        console.log(this.photo);
-      });
+          console.log(this.photo);
+        },
+        (err) => {
+          this.loading = false;
+          this.toastr.error('Error, ' + err.error.message, 'Error');
+        }
+      );
 
     this.updateUserForm = this.formBuilder.group({
       Username: ['', Validators.required],
@@ -107,6 +120,7 @@ export class ProfileComponent implements OnInit {
     this.toastr.success('Logged Out Successfully!', 'Success');
   }
   updateProfile(user_id: any) {
+    this.loading = true;
     console.log('Username: ' + this.username);
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
@@ -138,10 +152,12 @@ export class ProfileComponent implements OnInit {
     //make API call
     this.http.put(url, {}, { headers: header }).subscribe(
       (res) => {
+        this.loading = false;
         this.toastr.success('Profile Updated!', 'Success');
         console.log(res);
       },
       (err) => {
+        this.loading = false;
         this.toastr.error(
           'Profile Update Failed, ' + err.error.message,
           'Error'
@@ -151,6 +167,7 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteProfile(user_id: any) {
+    this.loading = true;
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
@@ -179,6 +196,7 @@ export class ProfileComponent implements OnInit {
                 this.router.navigate(['/login']);
               },
               (err) => {
+                this.loading = false;
                 this.toastr.error(
                   'Profile Delete Failed, ' + err.error.message,
                   'Error'
@@ -188,6 +206,7 @@ export class ProfileComponent implements OnInit {
             );
         },
         (err) => {
+          this.loading = false;
           this.toastr.error(
             'Profile Delete Failed, ' + err.error.message,
             'Error'

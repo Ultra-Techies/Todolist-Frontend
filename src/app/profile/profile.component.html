@@ -2,10 +2,17 @@
   <!-- Sidebar  -->
   <nav id="sidebar" style="align-items: center">
     <div class="sidebar-header">
-      <h3>Todo App</h3>
+      <h3>Tushughuli App</h3>
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+        *ngIf="loading"
+        style="width: 2rem; height: 2rem"
+      ></span>
     </div>
 
-    <ul class="list-unstyled components">
+    <ul class="list-unstyled components" style="padding-left: 20px">
       <li>
         <a routerLink="/todo">Home</a>
       </li>

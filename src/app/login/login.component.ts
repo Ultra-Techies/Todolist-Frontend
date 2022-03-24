@@ -14,6 +14,8 @@ import Utils from '../helpers/utils';
 export class LoginComponent implements OnInit {
   imageSrc = 'assets/images/logo.png';
   imageAlt = 'Logo';
+  loading = false;
+
   public loginForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -35,8 +37,11 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/todo']);
       this.toastr.success("You're already logged in!", 'Success');
     }
+
+    this.loading = false;
   }
   login() {
+    this.loading = true;
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
@@ -54,6 +59,7 @@ export class LoginComponent implements OnInit {
         (res) => {
           if (res.email === this.loginForm.value.Email && res.id !== 0) {
             this.toastr.success('Login Successful!', 'Success');
+            this.loading = false;
             //save user id in local storage
             localStorage.setItem('userId', res.id);
 
@@ -63,11 +69,13 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['todo']);
             }, 3000);
           } else {
+            this.loading = false;
             this.toastr.error('Login Failed, user does not exist!', 'Error');
             this.loginForm.reset();
           }
         },
         (err) => {
+          this.loading = false;
           this.toastr.error('Login Failed, ' + err.error.message, 'Error');
         }
       );
