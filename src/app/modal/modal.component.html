@@ -14,6 +14,31 @@
         <form>
           <form [formGroup]="addtaskForm" (Submit)="close()">
             <div class="row">
+              <div class="col-md-12">
+                <br />
+                <div class="form-group">
+                  <label for="">Enter Description:</label>
+                  <input
+                    formControlName="description"
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    placeholder="This is a random task description"
+                    required
+                    height="auto"
+                    maxRows="4"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      addtaskForm.controls['description'].dirty &&
+                      addtaskForm.hasError('required', 'description')
+                    "
+                    >Description is required</span
+                  >
+                </div>
+              </div>
+              <div><br /></div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="">Enter Task:</label>
@@ -55,30 +80,6 @@
                     "
                   >
                     Due date is required</span
-                  >
-                </div>
-              </div>
-              <div class="col-md-12">
-                <br />
-                <div class="form-group">
-                  <label for="">Enter Description:</label>
-                  <input
-                    formControlName="description"
-                    type="text"
-                    class="form-control"
-                    id="description"
-                    placeholder="This is a random task description"
-                    required
-                    height="auto"
-                    maxRows="4"
-                  />
-                  <span
-                    class="text-danger"
-                    *ngIf="
-                      addtaskForm.controls['description'].dirty &&
-                      addtaskForm.hasError('required', 'description')
-                    "
-                    >Description is required</span
                   >
                 </div>
               </div>
