@@ -126,7 +126,6 @@ export class TodoComponent implements OnInit {
         },
         (err: any) => {
           this.loading = false;
-          this.toastr.error('Error, ' + err.error.message, 'Error');
         }
       );
 
