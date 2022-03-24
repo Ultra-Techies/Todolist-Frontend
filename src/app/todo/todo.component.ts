@@ -161,11 +161,17 @@ export class TodoComponent implements OnInit {
     //if section id is cdk-drop-list-1 then set task status to progress,
     //if section id is cdk-drop-list-2 then set task status to done
 
-    if (sectionId === 'cdk-drop-list-0') {
+    if (sectionId === 'cdk-drop-list-0' || sectionId === 'cdk-drop-list-3') {
       task.status = 'created';
-    } else if (sectionId === 'cdk-drop-list-1') {
+    } else if (
+      sectionId === 'cdk-drop-list-1' ||
+      sectionId === 'cdk-drop-list-4'
+    ) {
       task.status = 'progress';
-    } else if (sectionId === 'cdk-drop-list-2') {
+    } else if (
+      sectionId === 'cdk-drop-list-2' ||
+      sectionId === 'cdk-drop-list-5'
+    ) {
       task.status = 'done';
     }
 
