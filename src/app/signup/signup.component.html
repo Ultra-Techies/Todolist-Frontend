@@ -89,6 +89,12 @@
               (click)="signUp()"
               [disabled]="signupForm.invalid"
             >
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+                *ngIf="loading"
+              ></span>
               SignUp
             </button>
             <p class="d-flex justify-content-end">

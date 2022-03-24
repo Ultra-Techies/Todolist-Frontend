@@ -14,6 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class SignupComponent implements OnInit {
   imageSrc = 'assets/images/logo.png';
   imageAlt = 'Logo';
+  loading = false;
   json: string | undefined;
 
   public signupForm!: FormGroup;
@@ -40,12 +41,15 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['/todo']);
       this.toastr.error('Please logout first!', 'Error');
     }
+    this.loading = false;
   }
   signUp() {
+    this.loading = true;
     //check to see if passwords match
     if (
       this.signupForm.value.Password !== this.signupForm.value.ConfirmPassword
     ) {
+      this.loading = false;
       this.toastr.error('Passwords do not match!', 'Error');
       return;
     }
@@ -76,6 +80,7 @@ export class SignupComponent implements OnInit {
         (err: any) => {
           this.toastr.error('Signup failed, ' + err.error.message, 'Error');
           this.router.navigate(['signup']);
+          this.loading = false;
         }
       );
   }
