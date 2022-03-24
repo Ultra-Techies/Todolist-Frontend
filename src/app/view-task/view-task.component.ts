@@ -22,6 +22,9 @@ export class ViewTaskComponent implements OnInit {
   completeDate: Date;
   localCompleteDate: string;
 
+  minDate: Date;
+  localMinDate: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -38,11 +41,20 @@ export class ViewTaskComponent implements OnInit {
       this.localCompleteDate.length - 1
     );
 
+    this.minDate = new Date(new Date().getTime());
+    this.localMinDate = this.minDate.toISOString();
+    this.localMinDate = this.localMinDate.substring(
+      0,
+      this.localMinDate.length - 1
+    );
+
     this.editTaskForm = this.formBuilder.group({
       task: [this.title, Validators.required],
       description: [this.description],
       dueDate: [new Date(this.dueDate), Validators.required],
     });
+
+    console.log('Description: ' + this.description);
   }
 
   close(): void {
@@ -56,7 +68,7 @@ export class ViewTaskComponent implements OnInit {
       let today = new Date();
       const newTaskData = {
         title: this.editTaskForm.value.task,
-        description: this.editTaskForm.value.taskDescription,
+        description: this.editTaskForm.value.description,
         reminder: Utils.formatDate(this.editTaskForm.value.dueDate),
         dueDate: Utils.formatDate(this.editTaskForm.value.dueDate),
         createdTime: Utils.formatDate(today),

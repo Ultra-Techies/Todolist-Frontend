@@ -139,8 +139,6 @@ export class TodoComponent implements OnInit {
 
   //update task status on move to new section
   updateTask(task: any, sectionId: String) {
-    console.log('New Status: ', sectionId);
-
     //if section id is cdk-drop-list-0 then set task status to created,
     //if section id is cdk-drop-list-1 then set task status to progress,
     //if section id is cdk-drop-list-2 then set task status to done
@@ -197,7 +195,6 @@ export class TodoComponent implements OnInit {
   //takes item due date and returns true if date difference is less than or equal to 1
   //and status is not done
   taskOverdue(dueDate: any, status: any) {
-    console.log('Status: ', status);
     try {
       let date = new Date(dueDate);
       let today = new Date();

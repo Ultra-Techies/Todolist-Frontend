@@ -13,6 +13,11 @@ import { Router } from '@angular/router';
 })
 export class ModalComponent implements OnInit {
   public addtaskForm!: FormGroup;
+  today = new Date();
+
+  completeDate: Date;
+  localCompleteDate: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -27,23 +32,31 @@ export class ModalComponent implements OnInit {
       duedate: ['', Validators.required],
       description: ['', Validators.required],
     });
+
+    this.completeDate = new Date(new Date(this.today).getTime());
+    this.localCompleteDate = this.completeDate.toISOString();
+    this.localCompleteDate = this.localCompleteDate.substring(
+      0,
+      this.localCompleteDate.length - 1
+    );
   }
 
   close(): void {
     const message = this.addtaskForm.value;
     //make sure message is not null or empty  before closing modal else show error
+    console.log('Date: ' + message.duedate);
     if (message) {
       let header = new HttpHeaders();
       header.append('Content-Type', 'application/json');
       header.append('Access-Control-Allow-Origin', '*');
       let userId = localStorage.getItem('userId');
-      let today = new Date();
+
       const newTaskData = {
         title: this.addtaskForm.value.task,
         description: this.addtaskForm.value.description,
         reminder: Utils.formatDate(this.addtaskForm.value.duedate),
         dueDate: Utils.formatDate(this.addtaskForm.value.duedate),
-        createdTime: Utils.formatDate(today),
+        createdTime: Utils.formatDate(this.today),
       };
       this.http
         .post(Utils.BASE_URL + 'task/add/' + userId, newTaskData, {
