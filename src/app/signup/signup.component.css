@@ -1,31 +1,17 @@
 .card {
   border: none;
-  margin: 50px;
-  /* margin-top: 200px; */
 }
 .btn {
   width: 100%;
   color: #ffffff;
   background-color: #0ca789;
 }
-.col-md-4 {
-  background-color: #0ca789;
-  text-align: center;
-  /* margin-left:-50px ; */
-  border-radius: 5px;
-  /* margin-top: 50px; */
-}
 img {
   width: 150px;
   height: 150px;
   margin-top: 100px;
 }
-.ultra {
-  color: #ffffff;
-  margin-top: 10px;
-}
-.goals {
-  text-align: center;
-  color: #ffffff;
-  margin-top: 30px;
+.signup {
+  width: 75%;
+  margin: auto;
 }
