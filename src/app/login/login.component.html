@@ -4,10 +4,10 @@
       <div class="card">
         <div style="text-align: center">
           <img src="{{ imageSrc }}" alt="imageAlt" />
-          <h2 style="margin-top: 10px">Welcome to Tushuguli</h2>
+          <h2 style="margin-top: 30px">Welcome to Tushuguli</h2>
           <h6>Please login to continue</h6>
         </div>
-        <form>
+        <form class="login">
           <form [formGroup]="loginForm" (Submit)="login()">
             <div class="form-group">
               <label for="emailaddress"> Enter Your Email address:</label>
