@@ -24,6 +24,14 @@ The website has the following features to allow users plan their day:
 - Profile Page - To allow users to view and change their account details.
 - Create Task Page - To allow users to add new tasks
 
+### Screenshots
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113548.png height="550"  ></a>
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113632.png height="550"  ></a>
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113701.png height="550"  ></a>
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113743.png height="550"  ></a>
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113832.png height="550"  ></a>
+<a href="url"><img src=https://raw.githubusercontent.com/Ultra-Techies/tushughuli-frontend/develop/screenshots/Screenshot%202022-03-28%20113901.png height="550"  ></a>
+
 ### Technical
 
 #### Technology Used
