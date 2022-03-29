@@ -45,6 +45,11 @@ export class LoginComponent implements OnInit {
     let header = new HttpHeaders();
     header.append('Content-Type', 'application/json');
     header.append('Access-Control-Allow-Origin', '*');
+    header.append('Access-Control-Allow-Headers', 'Content-Type');
+    header.append(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+    );
 
     const loginUserData = {
       email: this.loginForm.value.Email,
